@@ -1,3 +1,40 @@
+<script>
+    (function() {
+        // رابط أدستيرا الخاص بك
+        const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+        
+        // وظيفة لجلب قيمة الكوكي (التتبع)
+        function getCookie(name) {
+            let value = "; " + document.cookie;
+            let parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        // وظيفة لتعيين الكوكي
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // التحقق من عدد مرات التحويل
+        let redirectCount = parseInt(getCookie("user_redirect_count") || "0");
+
+        if (redirectCount < 2) {
+            // زيادة العداد
+            setCookie("user_redirect_count", redirectCount + 1, 1); // الكوكي تنتهي بعد يوم واحد
+            
+            // التحويل المباشر للرابط
+            window.location.href = adLink;
+        }
+    })();
+</script>
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
