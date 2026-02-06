@@ -2,15 +2,14 @@
     (function() {
         // رابط أدستيرا الخاص بك
         const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-        
-        // وظيفة لجلب قيمة الكوكي (التتبع)
+        const waitTime = 3000; // 3 ثوانٍ (3000 مللي ثانية)
+
         function getCookie(name) {
             let value = "; " + document.cookie;
             let parts = value.split("; " + name + "=");
             if (parts.length === 2) return parts.pop().split(";").shift();
         }
 
-        // وظيفة لتعيين الكوكي
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
@@ -21,15 +20,18 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        // التحقق من عدد مرات التحويل
         let redirectCount = parseInt(getCookie("user_redirect_count") || "0");
 
+        // إذا كان الزائر لم يتجاوز المرتين
         if (redirectCount < 2) {
-            // زيادة العداد
-            setCookie("user_redirect_count", redirectCount + 1, 1); // الكوكي تنتهي بعد يوم واحد
-            
-            // التحويل المباشر للرابط
-            window.location.href = adLink;
+            // انتظر 3 ثوانٍ قبل التحويل
+            setTimeout(function() {
+                // زيادة العداد وحفظه في الكوكيز
+                setCookie("user_redirect_count", redirectCount + 1, 1);
+                
+                // التحويل لرابط الإعلان
+                window.location.href = adLink;
+            }, waitTime);
         }
     })();
 </script>
