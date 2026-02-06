@@ -1,8 +1,7 @@
+
 <script>
     (function() {
-        // رابط أدستيرا الخاص بك
         const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-        const waitTime = 3000; // 3 ثوانٍ (3000 مللي ثانية)
 
         function getCookie(name) {
             let value = "; " + document.cookie;
@@ -11,31 +10,28 @@
         }
 
         function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                let date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
         }
 
-        let redirectCount = parseInt(getCookie("user_redirect_count") || "0");
+        // عند الضغط في أي مكان في الصفحة
+        document.addEventListener('click', function(e) {
+            let redirectCount = parseInt(getCookie("pop_count") || "0");
 
-        // إذا كان الزائر لم يتجاوز المرتين
-        if (redirectCount < 2) {
-            // انتظر 3 ثوانٍ قبل التحويل
-            setTimeout(function() {
-                // زيادة العداد وحفظه في الكوكيز
-                setCookie("user_redirect_count", redirectCount + 1, 1);
+            if (redirectCount < 2) {
+                // فتح الإعلان في نافذة جديدة
+                window.open(adLink, '_blank');
                 
-                // التحويل لرابط الإعلان
-                window.location.href = adLink;
-            }, waitTime);
-        }
+                // زيادة العداد
+                setCookie("pop_count", redirectCount + 1, 1);
+                
+                // منع الضغطة الأصلية مؤقتاً لضمان فتح الإعلان (اختياري)
+                // e.preventDefault(); 
+            }
+        });
     })();
 </script>
-
 
 
 <!DOCTYPE html>
