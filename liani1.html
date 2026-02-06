@@ -136,3 +136,70 @@
 
 </body>
 </html>
+
+<div class="nav-container">
+    <a href="https://arabadults.github.io/Gaia/" class="nav-btn prev-btn">
+        ⬅️ الصفحة السابقة
+    </a>
+    <a href="https://arabadults.github.io/Gaia/liani2.html" class="nav-btn next-btn">
+        الصفحة التالية ➡️
+    </a>
+</div>
+
+<style>
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 30px 10px;
+        margin-top: 20px;
+        flex-wrap: nowrap; /* لضمان بقائهم بجانب بعضهم في الجوال */
+    }
+
+    .nav-btn {
+        flex: 1;
+        max-width: 200px;
+        text-align: center;
+        color: white;
+        padding: 12px 5px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        border: 2px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* زر العودة (أزرق غامق أو رمادي ليبرز التالي) */
+    .prev-btn {
+        background: linear-gradient(45deg, #333, #555);
+    }
+
+    /* زر التالي (أحمر نابض - الأهم للربح) */
+    .next-btn {
+        background: linear-gradient(45deg, #ff0000, #990000);
+        animation: pulse-red 2s infinite;
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        filter: brightness(1.2);
+    }
+
+    @keyframes pulse-red {
+        0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+
+    /* تحسين الخط في الشاشات الصغيرة */
+    @media (max-width: 480px) {
+        .nav-btn { font-size: 13px; padding: 10px 5px; }
+    }
+</style>
+
