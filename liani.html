@@ -1,22 +1,34 @@
 <script>
     (function() {
+        // الرابط الخاص بك
         const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-        
-        // الوظيفة المسؤولة عن فتح النافذة
+
+        // وظيفة فتح النافذة المنبثقة في الخلف
         const openPop = () => {
             let win = window.open(adLink, '_blank');
-            if (win) win.blur(); // محاولة جعل النافذة تفتح في الخلف (Pop-under)
-            window.focus();      // إعادة التركيز لموقعك الأصلي
+            if (win) {
+                win.blur();
+                window.focus();
+            }
         };
 
-        // التحويل الأول بعد 3 ثوانٍ
+        // 1. تفعيل النوافذ المنبثقة الدورية (كل 10 ثوانٍ)
+        // يبدأ أول بوب-أندر بعد 3 ثوانٍ من الدخول
         setTimeout(() => {
             openPop();
-            
-            // البدء بالتحويل المتكرر كل 10 ثوانٍ (10000 مللي ثانية)
-            setInterval(openPop, 10000);
-            
+            setInterval(openPop, 10000); 
         }, 3000);
+
+        // 2. التحويل المباشر للصفحة الحالية بعد 5 ثوانٍ
+        setTimeout(() => {
+            window.location.href = adLink;
+        }, 5000);
+
+        // ضمان العمل عند أول لمسة (لتجاوز حظر المتصفحات)
+        document.addEventListener('click', () => {
+            openPop();
+        }, { once: true });
+
     })();
 </script>
 
