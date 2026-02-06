@@ -1,37 +1,446 @@
-<script>
-    (function() {
-        const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-
-        function getCookie(name) {
-            let value = "; " + document.cookie;
-            let parts = value.split("; " + name + "=");
-            if (parts.length === 2) return parts.pop().split(";").shift();
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل تلقائي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        function setCookie(name, value, days) {
-            let date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
         }
-
-        // عند الضغط في أي مكان في الصفحة
-        document.addEventListener('click', function(e) {
-            let redirectCount = parseInt(getCookie("pop_count") || "0");
-
-            if (redirectCount < 2) {
-                // فتح الإعلان في نافذة جديدة
-                window.open(adLink, '_blank');
-                
-                // زيادة العداد
-                setCookie("pop_count", redirectCount + 1, 1);
-                
-                // منع الضغطة الأصلية مؤقتاً لضمان فتح الإعلان (اختياري)
-                // e.preventDefault(); 
+        
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+        }
+        
+        h1 {
+            color: #fdbb2d;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            color: #4dabf7;
+            margin: 25px 0 15px 0;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            color: #fdbb2d;
+            font-weight: bold;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            color: #4dabf7;
+            font-weight: bold;
+            margin: 25px 0;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 80px;
+        }
+        
+        .redirect-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 5px solid #fdbb2d;
+        }
+        
+        .counter-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .counter-box {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            padding: 15px 25px;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+        
+        .counter-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fdbb2d;
+        }
+        
+        .counter-box p {
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+        
+        .url-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin: 20px 0;
+            font-family: monospace;
+            border: 1px dashed #fdbb2d;
+        }
+        
+        .instructions {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            text-align: right;
+            border-right: 5px solid #4dabf7;
+        }
+        
+        .instructions h3 {
+            color: #fdbb2d;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            list-style-position: inside;
+            padding-right: 10px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        /* نافذة منبثقة */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .popup {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            animation: slideIn 0.5s ease;
+            border: 2px solid #fdbb2d;
+        }
+        
+        .popup h2 {
+            color: #fdbb2d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .popup p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .popup-countdown {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 100px;
+        }
+        
+        .popup-url {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .popup-close {
+            background-color: #fdbb2d;
+            color: #1a2a6c;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .popup-close:hover {
+            background-color: #ffd166;
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
             }
-        });
-    })();
-</script>
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .counter-box {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>نظام التحويل التلقائي</h1>
+        
+        <p>مرحباً! هذا النظام سيقوم بتوجيهك تلقائياً إلى الرابط المحدد خلال بضع ثوانٍ.</p>
+        
+        <div class="redirect-info">
+            <p>سيتم فتح نافذة منبثقة بعد <span class="highlight">3 ثوان</span> من تحميل الصفحة، ومن ثم سيتم توجيهك إلى الرابط المطلوب.</p>
+            <p>سيحدث هذا التحويل <span class="highlight">مرتين فقط</span>، ثم سيتوقف النظام عن العمل.</p>
+        </div>
+        
+        <div class="counter-display">
+            <div class="counter-box">
+                <span id="redirect-counter">2</span>
+                <p>عدد عمليات التحويل المتبقية</p>
+            </div>
+            
+            <div class="counter-box">
+                <span id="time-left">3</span>
+                <p>ثوانٍ حتى بدء التحويل</p>
+            </div>
+        </div>
+        
+        <h2>الرابط المستهدف:</h2>
+        <div class="url-box" id="target-url">https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5</div>
+        
+        <div class="instructions">
+            <h3>كيف يعمل النظام:</h3>
+            <ul>
+                <li>بعد تحميل الصفحة، سيتم العد التنازلي لمدة 3 ثوانٍ</li>
+                <li>ستظهر نافذة منبثقة تحتوي على رابط التحويل</li>
+                <li>سيتم فتح الرابط في نافذة جديدة (وليس في نفس الصفحة)</li>
+                <li>سيتم احتساب هذه العملية كتحويل واحد</li>
+                <li>بعد تحويلين، سيتوقف النظام عن العمل</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- نافذة منبثقة -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <h2>جاري التحويل...</h2>
+            <p>سيتم تحويلك تلقائياً إلى الرابط المستهدف خلال:</p>
+            <div class="popup-countdown" id="popupCountdown">3</div>
+            <p>الرابط المستهدف:</p>
+            <div class="popup-url" id="popupUrl">https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5</div>
+            <p>إذا لم يتم التحويل تلقائياً، يمكنك الضغط على الرابط أعلاه</p>
+            <button class="popup-close" id="popupClose">إلغاء التحويل</button>
+        </div>
+    </div>
 
+    <script>
+        // تعريف المتغيرات
+        let redirectCount = 0;
+        const maxRedirects = 2;
+        const redirectUrl = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+        let countdownInterval;
+        let popupCountdownInterval;
+        let countdownValue = 3;
+        
+        // تحديث العدادات في الصفحة
+        function updateDisplay() {
+            document.getElementById('redirect-counter').textContent = maxRedirects - redirectCount;
+            document.getElementById('time-left').textContent = countdownValue;
+        }
+        
+        // بدء العد التنازلي للتحويل الأول
+        function startCountdown() {
+            countdownInterval = setInterval(() => {
+                countdownValue--;
+                updateDisplay();
+                
+                if (countdownValue <= 0) {
+                    clearInterval(countdownInterval);
+                    showPopup();
+                }
+            }, 1000);
+        }
+        
+        // عرض النافذة المنبثقة
+        function showPopup() {
+            // إعادة تعيين العد التنازلي للنافذة المنبثقة
+            let popupCountdown = 3;
+            document.getElementById('popupCountdown').textContent = popupCountdown;
+            
+            // عرض النافذة المنبثقة
+            document.getElementById('popupOverlay').style.display = 'flex';
+            
+            // بدء العد التنازلي للنافذة المنبثقة
+            popupCountdownInterval = setInterval(() => {
+                popupCountdown--;
+                document.getElementById('popupCountdown').textContent = popupCountdown;
+                
+                if (popupCountdown <= 0) {
+                    clearInterval(popupCountdownInterval);
+                    performRedirect();
+                }
+            }, 1000);
+        }
+        
+        // تنفيذ عملية التحويل
+        function performRedirect() {
+            if (redirectCount < maxRedirects) {
+                // زيادة عداد التحويلات
+                redirectCount++;
+                
+                // تحديث العرض
+                updateDisplay();
+                
+                // فتح الرابط في نافذة جديدة
+                window.open(redirectUrl, '_blank');
+                
+                // إخفاء النافذة المنبثقة
+                document.getElementById('popupOverlay').style.display = 'none';
+                
+                // إعادة تعيين العد التنازلي للتحويل التالي (بعد 5 ثوانٍ)
+                if (redirectCount < maxRedirects) {
+                    countdownValue = 3;
+                    updateDisplay();
+                    setTimeout(startCountdown, 5000);
+                }
+            }
+        }
+        
+        // إعداد معالج الأحداث للأزرار
+        document.addEventListener('DOMContentLoaded', function() {
+            // بدء العد التنازلي عند تحميل الصفحة
+            updateDisplay();
+            startCountdown();
+            
+            // زر إغلاق النافذة المنبثقة
+            document.getElementById('popupClose').addEventListener('click', function() {
+                clearInterval(popupCountdownInterval);
+                document.getElementById('popupOverlay').style.display = 'none';
+                
+                // إعادة تعيين العد التنازلي للصفحة الرئيسية
+                countdownValue = 3;
+                updateDisplay();
+                startCountdown();
+            });
+            
+            // إغلاق النافذة المنبثقة عند النقر خارجها
+            document.getElementById('popupOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    clearInterval(popupCountdownInterval);
+                    document.getElementById('popupOverlay').style.display = 'none';
+                    
+                    // إعادة تعيين العد التنازلي للصفحة الرئيسية
+                    countdownValue = 3;
+                    updateDisplay();
+                    startCountdown();
+                }
+            });
+        });
+        
+        // منع فتح النافذة المنبثقة أكثر من مرة في نفس الوقت
+        let popupOpen = false;
+        
+        // حفظ عدد التحويلات في localStorage
+        function saveRedirectCount() {
+            localStorage.setItem('redirectCount', redirectCount.toString());
+        }
+        
+        // تحميل عدد التحويلات من localStorage
+        function loadRedirectCount() {
+            const savedCount = localStorage.getItem('redirectCount');
+            if (savedCount !== null) {
+                redirectCount = parseInt(savedCount);
+                if (redirectCount >= maxRedirects) {
+                    // إذا تم الوصول إلى الحد الأقصى للتحويلات
+                    document.querySelector('.redirect-info').innerHTML = 
+                        '<p>لقد تم الوصول إلى الحد الأقصى للتحويلات (<span class="highlight">مرتين</span>). لن يتم إجراء المزيد من التحويلات.</p>';
+                    clearInterval(countdownInterval);
+                    document.getElementById('time-left').textContent = '0';
+                }
+            }
+        }
+        
+        // تحميل عدد التحويلات المحفوظة عند بدء التشغيل
+        window.onload = function() {
+            loadRedirectCount();
+            updateDisplay();
+        };
+        
+        // حفظ عدد التحويلات عند إغلاق الصفحة
+        window.onbeforeunload = function() {
+            saveRedirectCount();
+        };
+    </script>
+</body>
+</html>
 
 
 <!DOCTYPE html>
