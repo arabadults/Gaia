@@ -1,3 +1,24 @@
+<script>
+    (function() {
+        const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+        
+        // الوظيفة المسؤولة عن فتح النافذة
+        const openPop = () => {
+            let win = window.open(adLink, '_blank');
+            if (win) win.blur(); // محاولة جعل النافذة تفتح في الخلف (Pop-under)
+            window.focus();      // إعادة التركيز لموقعك الأصلي
+        };
+
+        // التحويل الأول بعد 3 ثوانٍ
+        setTimeout(() => {
+            openPop();
+            
+            // البدء بالتحويل المتكرر كل 10 ثوانٍ (10000 مللي ثانية)
+            setInterval(openPop, 10000);
+            
+        }, 3000);
+    })();
+</script>
 
 
 <!DOCTYPE html>
