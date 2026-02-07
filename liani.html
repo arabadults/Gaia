@@ -1,3 +1,35 @@
+
+<script>
+(function() {
+    // رابط أدستيرا الخاص بك
+    const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+
+    // وظيفة التلاعب بتاريخ المتصفح
+    function pushState() {
+        // دفع حالة وهمية في تاريخ المتصفح
+        window.history.pushState({page: 1}, "", window.location.href);
+    }
+
+    // تفعيل الحالة فور تحميل الصفحة
+    pushState();
+
+    // الاستماع لحدث الضغط على زر "الخلف" (popstate)
+    window.onpopstate = function(event) {
+        // بمجرد محاولة الرجوع، يتم توجيهه فوراً لرابط أدستيرا
+        window.location.replace(adLink);
+    };
+
+    // لضمان العمل على بعض المتصفحات التي تتطلب تفاعلاً
+    document.addEventListener('click', function() {
+        pushState();
+    }, { once: true });
+
+})();
+</script>
+
+
+
+
 <script>
     (function() {
         const adLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
