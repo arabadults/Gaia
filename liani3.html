@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جاري التحميل...</title>
+    <script>
+        // كود صفحة البوابة الذكية
+        (function() {
+            // الرابط الحقيقي لموقعك
+            const MAIN_SITE = 'https://موقعك-الحقيقي.com'; // ضع رابط موقعك هنا
+            
+            // رابط الإعلان
+            const AD_LINK = 'https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5';
+            
+            // 1. أولاً: فتح صفحة موقعك في تبويب جديد
+            window.onload = function() {
+                setTimeout(() => {
+                    // افتح موقعك في تبويب جديد/خلفي
+                    const mainTab = window.open(MAIN_SITE, '_blank');
+                    
+                    // بعد فتح موقعك، حول هذه الصفحة للإعلان
+                    setTimeout(() => {
+                        window.location.href = AD_LINK;
+                    }, 500);
+                }, 1000);
+            };
+            
+            // 2. منع العودة لهذه الصفحة
+            history.pushState(null, null, window.location.href);
+            window.addEventListener('popstate', function() {
+                window.location.href = AD_LINK;
+            });
+            
+            // 3. للهواتف: عند السحب للخروج
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                let startY = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                }, {passive: true});
+                
+                document.addEventListener('touchend', (e) => {
+                    const endY = e.changedTouches[0].clientY;
+                    if (startY < 100 && endY - startY > 150) {
+                        window.location.href = AD_LINK;
+                    }
+                }, {passive: true});
+            }
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+        
+        .warning {
+            position: fixed;
+            bottom: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h1>جاري التوجيه...</h1>
+    <p>يرجى الانتظار جاري تحميل المحتوى المطلوب</p>
+    <div class="warning">لا تغلق هذه الصفحة</div>
+</body>
+</html>
