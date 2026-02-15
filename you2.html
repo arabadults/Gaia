@@ -24,119 +24,139 @@
         .main-container {
             max-width: 650px;
             margin: auto;
-            padding: 15px;
+            padding: 10px;
         }
+        /* نظام مشغل يوتيوب العرضي 16:9 */
         .hero-video {
-            background: #111;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid #ff0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-            margin-bottom: 20px;
-        }
-        /* تعديل الأبعاد لتناسب الفيديو المباشر من ديسكورد */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
             background: #000;
-            line-height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            margin-bottom: 15px;
+            position: relative;
+            aspect-ratio: 16 / 9; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         video {
-            width: 100%;
-            height: auto;
-            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* سواد على الجوانب للمقاطع الطولية */
+            background: #000;
         }
         .promo-box {
-            background: linear-gradient(145deg, #1a1a1a, #000);
-            padding: 20px;
+            background: linear-gradient(145deg, #121212, #000);
+            padding: 15px;
             border-radius: 15px;
-            border: 1px solid #333;
-            margin-top: 10px;
+            border: 1px solid #222;
         }
         .call-to-action {
-            color: #ffcc00;
-            font-size: 1.4rem;
+            color: #fff;
+            font-size: 1.2rem;
             font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px #000;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .highlight-text {
+            color: #ffcc00;
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
         }
         .download-btn {
-            background: linear-gradient(90deg, #ff0000, #990000);
+            background: linear-gradient(90deg, #e60000, #800000);
             color: white;
             text-decoration: none;
-            padding: 18px;
+            padding: 16px;
             display: block;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border: 2px solid #fff;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            border: 1px solid rgba(255,255,255,0.3);
             animation: pulse 1.5s infinite;
         }
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        .view-count {
+            color: #666;
+            font-size: 0.8rem;
+            margin: 12px 0;
+            border-top: 1px solid #222;
+            padding-top: 10px;
         }
         .features-list {
             margin-top: 15px;
-            color: #bbb;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.85rem;
             text-align: right;
             display: inline-block;
         }
-        .features-list li { margin-bottom: 5px; }
+        .features-list li { margin-bottom: 6px; }
     </style>
 </head>
 <body onclick="handleGlobalClick()">
 
 <div class="main-container">
-    <h1 style="color: #ff0000; font-size: 1.5rem;">🔥 المشغل السريع - عرض حصري 🔥</h1>
+    <h2 style="color: #fff; font-size: 1.1rem; margin-bottom: 15px;">🌐 الاتصال آمن.. <span style="color:#ff0000">مشاهدة فورية</span></h2>
     
     <div class="hero-video">
-        <div class="video-wrapper">
-            <video id="discordPlayer" controls playsinline autoplay muted loop poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQ4Kkg5XxjScF4trb9wRltxd8HkeZomB0iz0ZzGvi2Qb0L1Kv_6GA1enwedbGuCtTfPQLh4xnVIcZzEUyI2Dg4Iqmfh3DMYvI_UOfZUwlqH4Bw78T-nJvT0lelEhqMjQ9KBgO8I-fZLb-tECSQfR0oQfaAu78GOD1Du9glfFS7aFDtXP9cmPQTuklADFjL/s982/1000204257.jpg">
-                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472393401725878475/VID_20260213_161650.mp4?ex=699268b6&is=69911736&hm=e68b512f98d6bc1b33f8da93f7b0db90a65907a430cd072644f126dd96bf1e12&" type="video/mp4">
-                متصفحك لا يدعم تشغيل هذا المقطع.
-            </video>
-        </div>
+        <video id="discordPlayer" controls playsinline autoplay muted loop poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQ4Kkg5XxjScF4trb9wRltxd8HkeZomB0iz0ZzGvi2Qb0L1Kv_6GA1enwedbGuCtTfPQLh4xnVIcZzEUyI2Dg4Iqmfh3DMYvI_UOfZUwlqH4Bw78T-nJvT0lelEhqMjQ9KBgO8I-fZLb-tECSQfR0oQfaAu78GOD1Du9glfFS7aFDtXP9cmPQTuklADFjL/s982/1000204257.jpg">
+            <source src="https://media.discordapp.net/attachments/1134630020162269298/1472393401725878475/VID_20260213_161650.mp4?ex=699268b6&is=69911736&hm=e68b512f98d6bc1b33f8da93f7b0db90a65907a430cd072644f126dd96bf1e12&" type="video/mp4">
+            متصفحك لا يدعم الفيديو.
+        </video>
     </div>
 
     <div class="promo-box">
         <div class="call-to-action">
-            🚨 تكملة المقطع وجميع الأجزاء المحذوفة متوفرة الآن داخل تطبيقنا (بدون إعلانات نهائياً) 🚨
+            <span class="highlight-text">🔓 تم فك حظر المحتوى 🔓</span>
+            المقطع المسرب كاملاً متاح الآن.. شاهد العرض قبل إغلاق الرابط من الإدارة!
         </div>
         
         <a href="https://playloadwsrn.com/2005399927978864642" class="download-btn">
-            📥 حمل التطبيق وافتح الأرشيف الكامل (+4000 مقطع)
+            ⚡ دخول الأرشيف السري (تحميل) ⚡
         </a>
+
+        <div class="view-count">
+            👁️ يشاهد الآن: <span id="visits">...</span> زائر من دول الخليج
+        </div>
 
         <div class="features-list">
             <ul>
-                <li>✅ حصريات نودز وتسريبات تويتر اليومية.</li>
-                <li>✅ أرشيف ضخم (ديـاثة، عنيـف، نيج، وكل المنوعات).</li>
-                <li>✅ جودة 4K وسرعة خرافية بدون أي تقطيع.</li>
-                <li>✅ حماية كاملة وخصوصية لهويتك.</li>
+                <li>🔥 تسريبات حصرية (VIP) لن تجدها في تويتر.</li>
+                <li>🔞 الأجزاء المحذوفة كاملة بدقة عالية.</li>
+                <li>🚫 سرية تامة ومسح تلقائي للسجل.</li>
+                <li>💎 سيرفرات فائقة السرعة للاتصال المباشر.</li>
             </ul>
         </div>
     </div>
 </div>
 
 <script>
+    // نظام العداد التراكمي
+    function cb(response) {
+        document.getElementById('visits').innerText = response.value;
+    }
+</script>
+<script async src="https://api.countapi.xyz/hit/alian_p_v1/visits?callback=cb"></script>
+
+<script>
     const cashLink = "https://playloadwsrn.com/2005399927978864642";
     let clickCounter = 0;
 
-    // نظام النقرات (1، 4، 7...) لتحويل الزائر لرابط سناب كاش
     function handleGlobalClick() {
         clickCounter++;
-        
-        // يفتح في النقرة 1 ثم 4 ثم 7 وهكذا
-        if (clickCounter === 1 || (clickCounter - 1) % 3 === 0) {
+        // تحسين معدل التحويل بفتح الرابط في النقرة 1 و 3 و 5
+        if (clickCounter === 1 || (clickCounter - 1) % 2 === 0) {
             window.open(cashLink, '_blank');
         }
     }
 
-    // مانع العودة (التحويل عند محاولة الخروج)
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() {
