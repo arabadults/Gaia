@@ -109,7 +109,17 @@
         
         <a href="https://playloadwsrn.com/2005399927978864642" class="download-btn">
             📥 حمل التطبيق وافتح الأرشيف الكامل (+4000 مقطع)
-        </a>
+        </a><div style="color: #555; font-size: 0.8rem; margin-top: 10px;">
+    👁️ عدد المشاهدات: <span id="visits">...</span>
+</div>
+
+<script>
+function cb(response) {
+    document.getElementById('visits').innerText = response.value;
+}
+</script>
+<script async src="https://api.countapi.xyz/hit/alian_project_unique_id/visits?callback=cb"></script>
+        
 
         <div class="features-list">
             <ul>
