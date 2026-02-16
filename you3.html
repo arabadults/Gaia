@@ -37,6 +37,7 @@
             background: transparent;
             z-index: 9999;
             cursor: pointer;
+            display: block;
         }
 
         header {
@@ -170,7 +171,7 @@
             <span class="quality-badge">4K ULTRA HD</span>
         </div>
         <div class="video-wrapper">
-            <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
+            <video id="v1" controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
                 <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4">
             </video>
         </div>
@@ -185,7 +186,7 @@
             <span class="quality-badge">FULL HD</span>
         </div>
         <div class="video-wrapper">
-            <video controls playsinline>
+            <video id="v2" controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
             </video>
         </div>
@@ -200,7 +201,7 @@
             <span class="quality-badge">HD</span>
         </div>
         <div class="video-wrapper">
-            <video controls playsinline>
+            <video id="v3" controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4">
             </video>
         </div>
@@ -215,7 +216,7 @@
             <span class="quality-badge">4K</span>
         </div>
         <div class="video-wrapper">
-            <video controls playsinline>
+            <video id="v4" controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4">
             </video>
         </div>
@@ -230,7 +231,7 @@
             <span class="quality-badge">BLUE RAY</span>
         </div>
         <div class="video-wrapper">
-            <video controls playsinline>
+            <video id="v5" controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
             </video>
         </div>
@@ -251,27 +252,40 @@
 <script>
     const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
     let clickCount = 0;
+    const overlay = document.getElementById('invisible-overlay');
 
-    // وظيفة الستارة (أول لمسة)
+    // وظيفة إعادة جدولة الستارة بتوقيت عشوائي (3-6 ثوانٍ)
+    function scheduleOverlay() {
+        const randomDelay = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+        setTimeout(() => {
+            if (overlay) {
+                overlay.style.display = 'block';
+            }
+        }, randomDelay);
+    }
+
+    // وظيفة الستارة (الربح من النقرة)
     function firstTouch() {
         window.open(adsLink, '_blank');
         clickCount++;
-        // إخفاء الستارة لفتح التحكم في الفيديو
-        const overlay = document.getElementById('invisible-overlay');
+        
+        // إخفاء الستارة للسماح بالتفاعل المؤقت مع الفيديوهات
         if (overlay) overlay.style.display = 'none';
+        
+        // إعادة التفعيل العشوائي
+        scheduleOverlay();
     }
 
-    // وظيفة النقرات العامة (كل 3 نقرات بعد اختفاء الستارة)
+    // وظيفة النقرات العامة (تحويل إضافي كل 3 نقرات)
     function handleGlobalClick() {
         clickCount++;
-        // يبدأ الحساب الفعلي بعد لمس الستارة
-        // سيقوم بالتحويل في النقرة رقم 3، 6، 9... إلخ
+        // إذا لم تكن الستارة موجودة وضغط المستخدم 3 مرات إضافية
         if (clickCount > 1 && clickCount % 3 === 0) {
             window.open(adsLink, '_blank');
         }
     }
 
-    // مانع الخروج
+    // مانع الخروج (Redirect on Back)
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() {
@@ -279,10 +293,11 @@
         };
     })();
 
-    // تزييف عدد المتصلين
+    // تزييف عدد المتصلين لإعطاء انطباع بالنشاط
     setInterval(() => {
         const count = Math.floor(Math.random() * (5000 - 4000) + 4000);
-        document.getElementById('online-count').innerText = count.toLocaleString();
+        const el = document.getElementById('online-count');
+        if(el) el.innerText = count.toLocaleString();
     }, 3000);
 </script>
 
