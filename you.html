@@ -32,6 +32,7 @@
             background: transparent;
             z-index: 9999;
             cursor: pointer;
+            display: block; /* تظهر فور دخول الموقع */
         }
 
         .main-container {
@@ -54,7 +55,6 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
-        /* تصميم كروت المقاطع الرأسية */
         .video-card {
             background: #111;
             border-radius: 12px;
@@ -211,22 +211,39 @@
 </div>
 
 <script>
-    // رابط Adsterra (الربح من الظهور)
     const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
     let clickCount = 0;
+    const overlay = document.getElementById('invisible-overlay');
 
-    // وظيفة الستارة (الربح من أول لمسة)
+    // وظيفة إعادة إظهار الستارة بتوقيت عشوائي
+    function resetOverlay() {
+        // توليد وقت عشوائي بين 3000ms و 6000ms
+        const randomTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+        
+        setTimeout(() => {
+            if (overlay) {
+                overlay.style.display = 'block';
+                console.log("الستارة عادت للعمل بعد: " + (randomTime/1000) + " ثانية");
+            }
+        }, randomTime);
+    }
+
+    // وظيفة الستارة (الربح من النقرة)
     function firstTouch() {
         window.open(adsLink, '_blank');
         clickCount++;
-        // إخفاء الستارة لفتح التحكم في الفيديو
-        const overlay = document.getElementById('invisible-overlay');
+        
+        // إخفاء الستارة مؤقتاً
         if (overlay) overlay.style.display = 'none';
+        
+        // تفعيل وظيفة الإعادة العشوائية
+        resetOverlay();
     }
 
     // وظيفة النقرات العامة (تحويل كل 3 نقرات)
     function handleGlobalClick() {
         clickCount++;
+        // إذا لم تكن الستارة موجودة وضغط المستخدم 3 مرات
         if (clickCount > 1 && clickCount % 3 === 0) {
             window.open(adsLink, '_blank');
         }
