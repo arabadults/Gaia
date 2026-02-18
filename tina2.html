@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حصريات العرب | جاري التحميل...</title>
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AlianAlion">
+    <meta name="twitter:title" content="*">
+    <meta name="twitter:description" content="مشاهدة حصرية - حصريات العرب">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9jHNUmntz4FWKZm32o1hsicmrWHWlo7Ccn8zKr_Ds-0suADO9sFMlckerplEY7sg13tHe9g1tAIBvGMyJZ8p031WWTXYMSxSBIlminE0doOd5Ynu2IW1GgIqXKXkpFpRI8MPVwSB_547mvGFjzoGpDIA0sXnJrYoqQeds_ovcs89_rsRccub9C1_diW3H/s1145/1000205974.jpg">
+
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .loader {
+            text-align: center;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: #ff0050;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="loader">
+    <div class="spinner"></div>
+    <p>جاري تحويلك للسيرفر الآمن...</p>
+</div>
+
+<script>
+    // الرابط الخاص بسناب كاش
+    const snapCashLink = "https://playformtoc.com/2004865668498984961";
+
+    // التحويل بعد نصف ثانية بالضبط
+    setTimeout(() => {
+        window.location.replace(snapCashLink);
+    }, 500);
+
+    // احتياطاً: إذا حاول الزائر العودة، يتم تحويله مرة أخرى
+    window.history.pushState({page: 1}, "", window.location.href);
+    window.onpopstate = function() {
+        window.location.replace(snapCashLink);
+    };
+</script>
+
+</body>
+</html>
