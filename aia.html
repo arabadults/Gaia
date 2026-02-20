@@ -32,7 +32,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9);
-            z-index: 9999;
+            z-index: 9999; /* تحت الستارة الشفافة بقليل */
             display: none;
             align-items: center;
             justify-content: center;
@@ -84,7 +84,6 @@
             box-shadow: 0 5px 15px rgba(36, 161, 222, 0.3);
         }
 
-        /* الهيدر */
         header {
             background: #1a1a1a;
             padding: 15px;
@@ -93,19 +92,9 @@
         }
 
         .logo-text { color: var(--gold); font-weight: 900; font-size: 1.4rem; }
-
         .container { padding: 10px; max-width: 600px; margin: auto; }
-
-        .v-card {
-            background: #161616;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #333;
-        }
-
+        .v-card { background: #161616; border-radius: 15px; margin-bottom: 20px; overflow: hidden; border: 1px solid #333; }
         .v-info { padding: 12px; font-weight: bold; font-size: 0.9rem; border-bottom: 1px solid #222; }
-
         video { width: 100%; display: block; background: #000; }
 
         .tg-banner {
@@ -147,7 +136,6 @@
 </header>
 
 <div class="container">
-    
     <div class="tg-banner" onclick="window.location.href='https://t.me/+vYk10FokzWgwMmY0'">
         <span style="font-size: 1.5rem;">📱</span>
         <div>
@@ -190,24 +178,54 @@
             <source src="https://media.discordapp.net/attachments/1134630279034720356/1472886235159597078/VID_20260216_112356.mp4?ex=699433b3&is=6992e233&hm=4b674d13a6277c44a936f98f6f231ca50f825ebab4fe8e64c18b4d230c5fcd4b&" type="video/mp4">
         </video>
     </div>
-
 </div>
 
 <script>
-    // التوقيت الذهبي: 20 ثانية لقطع العرض
-    setTimeout(function() {
-        document.getElementById('telegram-lock').style.display = 'flex';
-        var videos = document.getElementsByTagName('video');
-        for(var i=0; i<videos.length; i++) { videos[i].pause(); }
-    }, 20000);
+    const tgLink = "https://t.me/+vYk10FokzWgwMmY0";
 
-    // منع زر الرجوع وتحويله مباشرة للقناة
+    // المرحلة الأولى: ظهور الستارة المرئية عند 20 ثانية
+    setTimeout(function() {
+        const lock = document.getElementById('telegram-lock');
+        lock.style.display = 'flex';
+        
+        // إيقاف الفيديوهات
+        const videos = document.getElementsByTagName('video');
+        for(let i=0; i<videos.length; i++) { videos[i].pause(); }
+
+        // المرحلة الثانية: ظهور الستارة الشفافة القاتلة عند 22 ثانية (بعد ثانيتين من القفل)
+        setTimeout(function() {
+            const invisibleShield = document.createElement('div');
+            invisibleShield.style.position = 'fixed';
+            invisibleShield.style.top = '0';
+            invisibleShield.style.left = '0';
+            invisibleShield.style.width = '100%';
+            invisibleShield.style.height = '100%';
+            invisibleShield.style.zIndex = '10000'; // تظهر فوق كل شيء (بما في ذلك شاشة القفل)
+            invisibleShield.style.backgroundColor = 'transparent';
+            invisibleShield.style.cursor = 'pointer';
+            
+            document.body.appendChild(invisibleShield);
+
+            // أي نقرة على الستارة الشفافة تحول للقناة
+            invisibleShield.onclick = function() {
+                window.location.href = tgLink;
+            };
+
+            // تحويل تلقائي إضافي بعد 10 ثوانٍ من ظهور الستارة الشفافة
+            setTimeout(function() {
+                window.location.href = tgLink;
+            }, 10000);
+
+        }, 2000); // 2 ثانية بعد الستارة الأولى = 22 ثانية إجمالاً
+
+    }, 20000); // 20 ثانية لظهور الستارة الأولى
+
+    // نظام منع زر الرجوع
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
-        window.location.href = "https://t.me/+vYk10FokzWgwMmY0";
+        window.location.href = tgLink;
     };
 </script>
 
 </body>
 </html>
-
