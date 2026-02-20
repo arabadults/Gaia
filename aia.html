@@ -181,40 +181,42 @@
 </div>
 
 <script>
-// رابط القناة الخاص بك
+
+    // رابط القناة الخاص بك
 const telegramChannel = "https://t.me/+vYk10FokzWgwMmY0";
 
-// بدء نظام "المصيدة المتكررة" بعد 3 ثوانٍ من الفتح
-const hunterLoop = setInterval(function() {
-    // إنشاء طبقة شفافة تغطي الشاشة بالكامل
+function createTrap() {
+    // التحقق من عدم وجود ستارة سابقة لتجنب التكرار
+    if (document.getElementById("early-trap")) return;
+
     const earlyShield = document.createElement('div');
     earlyShield.id = "early-trap";
     earlyShield.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;z-index:9990;background:transparent;cursor:pointer;";
     document.body.appendChild(earlyShield);
 
-    // التحويل الفوري عند النقر في أي مكان
     earlyShield.onclick = function() {
         window.location.href = telegramChannel;
+        // القوة هنا: بمجرد النقر، نحذفها وننشئ واحدة جديدة فوراً دون انتظار الـ 3 ثوانٍ
+        this.remove();
+        createTrap(); 
     };
+}
 
-    // إزالة الطبقة بعد ثانيتين لإعادة إنشائها (لتجنب تعليق المتصفح)
-    setTimeout(() => { 
-        const el = document.getElementById("early-trap");
-        if(el) el.remove(); 
-    }, 2000);
+// البدء بعد 3 ثوانٍ
+setTimeout(() => {
+    createTrap();
+    // نظام مراقبة كل ثانية لضمان وجود الستارة دائماً
+    const hunterLoop = setInterval(createTrap, 1000);
 
-}, 3000); // التكرار كل 3 ثوانٍ
-
-// إيقاف هذه العملية تماماً عند الثانية 18
-setTimeout(function() {
-    clearInterval(hunterLoop);
-    const lastTrap = document.getElementById("early-trap");
-    if(lastTrap) lastTrap.remove();
-    console.log("تم إيقاف المصيدة المبكرة.. الاستعداد للقفل الإجباري");
-}, 18000);
-
+    // إيقاف العملية عند الثانية 18 لترك مجال للقفل الإجباري
+    setTimeout(function() {
+        clearInterval(hunterLoop);
+        const lastTrap = document.getElementById("early-trap");
+        if(lastTrap) lastTrap.remove();
+    }, 15000); // جعلتها 15 ثانية (منذ بداية التشغيل) لتكون أدق
     
-    const tgLink = "https://t.me/+vYk10FokzWgwMmY0";
+}, 3000);
+    
 
     // المرحلة الأولى: ظهور الستارة المرئية عند 20 ثانية
     setTimeout(function() {
